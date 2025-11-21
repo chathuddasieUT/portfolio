@@ -16,7 +16,7 @@
             color: #000000;
             max-width: 800px;
             margin: auto;
-            padding-top: 250px; 
+            padding-top: 10px; 
             line-height: 1.6;
             letter-spacing: 0.05em;
         }
@@ -33,7 +33,7 @@
             transform: translateX(-50%);
             width: 100%;
             max-width: 800px;
-            height: auto*0.1;
+            height: auto;
             z-index: 1000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
         }
@@ -72,9 +72,16 @@
             margin-top: 10px;
         }
 
+        psmall {
+            color: #000000;
+            font-size: 1.1em;
+            font-weight: 300;
+            margin-top: 2px;
+        }
+
         .professional-summary {
             font-style: italic;
-            margin-bottom: 20px;
+            margin-bottom: 0px;
             border-left: 3px solid #000000;
             padding-left: 15px;
             font-size: 1.1em;
@@ -156,10 +163,6 @@
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
-        }
-
         section {
             margin-bottom: 40px;
         }
@@ -192,6 +195,9 @@
 
         .linkedin-logo {
             margin-top: 20px;
+            display: flex;
+            justify-content: center; 
+            gap: 20px; 
         }
 
         .linkedin-logo img {
@@ -248,6 +254,22 @@
             padding: 5px;
             border-top: 1px dashed #cccccc;
         }
+
+        .fixed-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.85); 
+            color: #000000;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 0.9em;
+            border-top: 1px solid #e0e0e0;
+            backdrop-filter: blur(4px); /* optional, looks nice on images */
+            z-index: 2000;
+        }
+
     </style>
 </head>
 
@@ -255,14 +277,14 @@
     <div class="top-section">
         <div class="intro-text">
             <h1>Chathuddasie (Chat) Amarasinghe</h1>
-            <p>PhD candidate in Biophysics with 7+ years of experience in life sciences research, imaging, and advanced instrumentation.</p>
-        </div>
+           <p>Welcome to my page! I'm a dedicated PhD candidate in Biophysics, bringing 7+ years of experience in life sciences research, advanced imaging, and specialized instrumentation. Explore what I do below, and feel free to connect with me!</p>
+          </div>
         <img src="image1.jpg" alt="Personal Image">
     </div>
 
     <div id="accordion-sections">
 
-        <section style="margin-top: 50px;">
+        <section style="margin-top: -50px;">
             <p class="professional-summary"></p>
         </section>
 
@@ -272,7 +294,7 @@
                 <li class="clearfix"><strong>Ph.D. in Physics (Biophysics Concentration)</strong> <span class="right-align">Fall 2020 – May 2026 (Expected)</span>
                     <br>University of Tennessee, Knoxville, TN | GPA: 3.82/4.00
                 </li>
-                <li class="clearfix"><strong>Bachelor of Science (Hons) in Physics</strong> <span class="right-align">2014 – 2018</span>
+                <li class="clearfix"><strong>Bachelor of Science (Honors) in Physics</strong> <span class="right-align">2014 – 2018</span>
                     <br>University of Peradeniya, Peradeniya, Sri Lanka
                 </li>
                 <li class="clearfix"><strong>Advanced Diploma in Management Accounting</strong> <span class="right-align">2013 – 2014</span>
@@ -290,6 +312,10 @@
                         <li>Led research on chromosome organization and intracellular dynamics in <em>Escherichia coli</em>, combining imaging, genetic engineering, and computational modeling.</li>
                         <li>Independently authored funding proposals and collaborated with industry vendors to procure specialized optical components and lab equipment.</li>
                         <li>Designed and fabricated microfluidic devices using electron-beam lithography <em>(JEOL 9300FS 100kV Electron Beam Lithography System)</em>, photolithography <em>(Suss MicroTech Contact Aligner)</em>, and RIE <em>(Oxford Plasmalab System 100 Reactive Ion Etcher)</em> at Center for Nanophase Materials Sciences (CNMS), Oak Ridge National Laboratory (ORNL). New designs increased cell capture by 140%.</li>
+                        <figure class="poster-figure">
+                            <img src="InstrumentsAtCNMS.png" alt="Microfabrication">
+                            <figcaption class="poster-figcaption">Microfabrication instruments used at the CNMS (ORNL) cleanroom, including the JEOL 9300FS E-Beam Lithography System, Suss MicroTech Aligner, and Oxford RIE.</figcaption>
+                        </figure>
                         <li>Conducted 60+ high-throughput time-lapse fluorescence microscopy experiments using Nikon Ti-E inverted epifluorescence microscope, enhancing temporal resolution from 3 minutes to 6 seconds through custom laser integration.</li>
                         <li>Developed deep learning image analysis tools (U-Net CNN) in Python/MATLAB, achieving 93% accuracy in cell segmentation.</li>
                         <li>Analyzed experimental data and developed PDE and MD models (LAMMPS) for cellular dynamics, enabling quantitative validation of findings.</li>
@@ -326,13 +352,13 @@
                             <ul>
                             <li>Assisted the supervising faculty member by grading assignments and examinations.</li>
                             <li>Ensured the safe use of lasers during laboratory sessions.</li> 
-                            <li>Troubleshoot experimental setups to aid comprehension of advanced optics experiments.</li>
+                            <li>Assisted students by troubleshooting experimental setups.</li>
                             <li>Evaluated student lab reports.</li>
                             </ul>
                         <li><strong>Physics 221 (Elements of Physics I Lab)</strong>: Basic physical principles and applications required in pre-medical, pre-pharmacy, and pre-veterinary programs. Topics include mechanics, heat, and wave motion.</li>
                             <ul>
                                 <li>Conducted online recitations via Zoom to support student learning.</li>
-                                <li>Troubleshoot experimental setups during laboratory sessions.</li>
+                                <li>Troubleshot experimental setups during laboratory sessions.</li>
                                 <li>Graded quizzes and lab reports.</li>
                             </ul>
                     </ul>
@@ -340,9 +366,9 @@
                 <li class="clearfix">
                     <h2>Graduate Teaching Assistant – UNC Charlotte</h2> <span class="right-align">August 2019 – May 2020</span>
                     <ul>
-                        <li><strong>Chemistry 1251L (General Chemistry I Lab)</strong>:</li>
+                        <li><strong>Chemistry 1251L (General Chemistry I Lab)</strong>: Topics include quantitative measurements, solution preparation, chemical reactions and stoichiometry, thermochemical processes, and properties of materials.</li>
                         <ul>
-                            <li>Responsible for guiding and evaluating undergraduate students on the safe execution of laboratory experiments, including proper handling and disposal of chemicals.</li>
+                            <li>Guided and evaluated undergraduate students on the safe execution of laboratory experiments, including proper handling and disposal of chemicals.</li>
                             <li>Adapted quickly to COVID-19 lockdowns by transitioning to online teaching, preparing engaging video lessons to maintain continuity and student engagement.</li>
                         </ul>
                     </ul>
@@ -363,7 +389,7 @@
         <li><strong>Physics 280 (General Physics Laboratory I)</strong>:
             <ul>
                 <li>Demonstrated and supervised 200-level undergraduate laboratory sessions for over 100 students.</li>
-                <li>Key duties included compiling laboratory handouts, preparing and grading prelab quizzes, and evaluating detailed student lab reports.</li>
+                <li>Key duties included compiling laboratory handouts, preparing and grading prelab quizzes, and evaluating student lab reports.</li>
             </ul>
                     </ul>
                 </li>
@@ -463,20 +489,20 @@
                     <li class="clearfix">
                         <h2>Undergraduate Research Mentorship (EUReCA)</h2> <span class="right-align">Spring 2025</span>
                         <ul>
-                            <li>Mentored an undergraduate researcher presenting at <strong>Exhibition of Undergraduate Research and Creative Achievement (EUReCA)</strong>, a campus-wide research showcase at the University of Tennessee, Knoxville.</li>
+                            <li>Mentored an undergraduate researcher presenting at Exhibition of Undergraduate Research and Creative Achievement (EUReCA), a campus-wide research showcase at the University of Tennessee, Knoxville.</li>
                         </ul>
                     </li>
                     <li class="clearfix">
                         <h2>Science Outreach Volunteer (GSSE Summer Program)</h2> <span class="right-align">May 2022 – Present</span>
                         <ul>
-                            <li>Engaged high school students in hands-on learning at the Governor’s School for the Sciences and Engineering (GSSE).</li>
+                            <li>Conducted engaging, hands-on learning sessions for high school students from the Governor’s School for the Sciences and Engineering (GSSE).</li>
                             <li>Fostered interest in microscopy and experimental design via interactive sessions showcasing live-cell imaging with microfluidic devices using the Nikon Ti-E confocal microscope.</li>
                         </ul>
                     </li>
                     <li class="clearfix">
-                        <h2>Sri Lankan Students' Association Founding Member & Treasurer</h2> <span class="right-align">Spring 2023</span>
+                        <h2>Sri Lankan Students' Association Initiator & Treasurer</h2> <span class="right-align">2023 - 2024</span>
                         <ul>
-                            <li>Co-authored the organization's constitution, independently designed its official logo, and established the association's structure.</li>
+                            <li>Authored the organization's constitution, independently designed its official logo, and established the association's structure.</li>
                             <li>Initiated and led the first fundraising campaign, generating over $1500 in funds to support the inaugural event that attracted over 100 attendees.</li>
                         </ul>
                     </li>
@@ -496,17 +522,29 @@
                     </li>
                     </ul>
             </div>
+
+            <button class="accordion">Hobbies & Interests</button>
+            <div class="panel">
+                <psmall style="margin-bottom: 15px;">
+                    I'm happiest when I'm moving, so you'll usually find me staying active outdoors. Hiking is always a favorite. Having grown up an islander in Sri Lanka, I'm genuinely down for anything involving the water, like swimming, kayaking, jet skiing, and other water sports.
+                </psmall>
+            </div>
         
     </div>
 
     <div class="contact-section">
         <h2>Contact Me</h2>
-        <p>If you'd like to get in touch, feel free to email me:</p>
-        <a href="mailto:camarasi@vols.utk.edu">camarasi@vols.utk.edu</a>
+        <psmall>Please feel free to connect for inquiries regarding my research, potential career opportunities, and collaborations.</psmall>
 
         <div class="linkedin-logo">
+            <a href="mailto:camarasi@vols.utk.edu" title="Send Email">
+                <img src="mailto.svg" alt="Email">
+            </a>
             <a href="https://www.linkedin.com/in/chathuddasie-amarasinghe" target="_blank">
                 <img src="linkedin-logo.svg" alt="LinkedIn">
+            </a>
+            <a href="https://scholar.google.com/citations?user=vD4YGC8AAAAJ&hl=en" target="_blank">
+                <img src="GoogleScholarSquare.svg" alt="Scholar">
             </a>
         </div>
     </div>
@@ -527,6 +565,10 @@
             });
         }
     </script>
+    <div class="fixed-footer">
+        © 2025 Chathuddasie Amarasinghe — Use of images without permission is prohibited.
+    </div>
+
 </body>
 
 </html>

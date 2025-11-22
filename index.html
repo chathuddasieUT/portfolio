@@ -7,9 +7,7 @@
     <title>Chathuddasie Amarasinghe</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&display=swap');
-
-
-
+        
         body {
             font-family: 'Playfair Display', serif;
             margin: 0;
@@ -26,16 +24,19 @@
         .top-section {
             background-color: rgba(245, 245, 245, 0.98);
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
-            padding: 30px;
+            padding: 50px;
             align-items: center;
+            position: relative;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 100%;
             max-width: 800px;
-            margin: 0 auto;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: auto;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
         }
-
 
         .top-section img {
             width: 150px;
@@ -71,7 +72,7 @@
             margin-top: 10px;
         }
 
-        .psmall {
+        psmall {
             color: #000000;
             font-size: 1.1em;
             font-weight: 300;
@@ -235,7 +236,7 @@
             background-color: #ffffff;
             border: 1px solid #e0e0e0;
             text-align: center;
-            max-width: 100%; 
+            max-width: 60%; 
         }
 
         .poster-figure img {
@@ -258,7 +259,7 @@
             position: fixed;
             bottom: 0;
             left: 0;
-            width: 100vw;
+            width: 100%;
             background-color: rgba(255, 255, 255, 0.85); 
             color: #000000;
             text-align: center;
@@ -283,7 +284,7 @@
 
     <div id="accordion-sections">
 
-        <section style="margin-top: 0;">
+        <section style="margin-top: -50px;">
             <p class="professional-summary"></p>
         </section>
 

@@ -278,8 +278,48 @@
             padding: 8px 0;
             font-size: 0.9em;
             border-top: 1px solid #e0e0e0;
-            backdrop-filter: blur(4px); /* optional, looks nice on images */
+            backdrop-filter: blur(4px); 
             z-index: 2000;
+        }
+
+        .pub-entry {
+            display: block; 
+            margin-bottom: 25px; 
+            line-height: 1.4;
+        }
+
+        .pub-authors {
+            display: block;
+            font-size: 0.9em; 
+            color: #000; 
+            margin-bottom: 5px;
+        }
+
+        .pub-title {
+            display: block;
+            font-style: italic;
+            font-size: 1.1em;
+            color: #000;
+        }
+        
+        .pub-journal {
+            font-weight: 600; 
+            color: #000;
+            font-size: 1.0em;
+            display: inline-block; 
+        }
+        
+        .pub-date {
+            font-weight: 500;
+            color: #000;
+            margin-left: 10px;
+        }
+
+        .pub-link {
+            font-size: 0.9em;
+            margin-left: 15px;
+            color: #0000FF; 
+            text-decoration: underline;
         }
 
     </style>
@@ -368,6 +408,10 @@
                             <li>Assisted students by troubleshooting experimental setups.</li>
                             <li>Evaluated student lab reports.</li>
                             </ul>
+                            <figure class="poster-figure">
+                            <img src="Phys421.png" alt="Demonstration of optical alignment principles in the Physics 421 Modern Optics Lab.">
+                            <figcaption class="poster-figcaption">Demonstration of optical alignment principles in the Physics 421 Modern Optics Lab.</figcaption>
+                            </figure>
                         <li><strong>Physics 221 (Elements of Physics I Lab)</strong>: Basic physical principles and applications required in pre-medical, pre-pharmacy, and pre-veterinary programs. Topics include mechanics, heat, and wave motion.</li>
                             <ul>
                                 <li>Conducted online recitations via Zoom to support student learning.</li>
@@ -412,10 +456,34 @@
         <button class="accordion">Publications</button>
         <div class="panel">
             <ul>
-                <li>Jaana Männik, Prathitha Kar, <strong>Chathuddasie Amarasinghe</strong>, Ariel Amir, Jaan Männik. <em>Determining the rate-limiting processes for cell division in E. coli</em>. <em>Nature Communications</em>, 15, Article number: 9948 (2024).</li>
-                <li>Jaan Männik, Jaana Männik, <strong>Chathuddasie Amarasinghe</strong>, Mu-Hung Chang, Maxim O. Lavrentovich. <em>The role of macromolecular crowders in the formation and compaction of the E. coli nucleoid</em>. <em>EcoSal Plus</em>, Ahead of Print (2025).</li>
-                <li><strong>Chathuddasie Amarasinghe</strong>, Mu-Hung Chang, Jaana Männik, Scott T. Retterer, Maxim O. Lavrentovich, Jaan Männik. <em>The role of active mRNA–ribosome dynamics and closing constriction in daughter chromosome separation in E. coli</em>. <em>Proc. Natl. Acad. Sci. U.S.A.</em>, 122(45), e2508100122 (2025).</li>
-            </ul>
+                <li class="clearfix">
+                    <span class="pub-entry">
+                        <span class="pub-title"><em>The role of active mRNA–ribosome dynamics and closing constriction in daughter chromosome separation in E. coli</em>.</span>
+                        <span class="pub-authors"><strong>Chathuddasie Amarasinghe</strong>, Mu-Hung Chang, Jaana Männik, Scott T. Retterer, Maxim O. Lavrentovich, Jaan Männik.</span>
+                        <span class="pub-journal">Proceedings of the National Academy of Sciences, 122(45)</span>
+                        <span class="pub-date">(2025)</span>
+                        <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=vD4YGC8AAAAJ&citation_for_view=vD4YGC8AAAAJ:UeHWp8X0CEIC" target="_blank" class="pub-link">[Article Link]</a>
+                    </span>
+                </li>
+                <li class="clearfix">
+                    <span class="pub-entry">
+                        <span class="pub-title"><em>The role of macromolecular crowders in the formation and compaction of the E. coli nucleoid</em>.</span>
+                        <span class="pub-authors">Jaan Männik, Jaana Männik, <strong>Chathuddasie Amarasinghe</strong>, Mu-Hung Chang, Maxim O. Lavrentovich.</span>
+                        <span class="pub-journal">EcoSal Plus, Ahead of Print</span>
+                        <span class="pub-date">(2025)</span>
+                        <a href="https://journals.asm.org/doi/full/10.1128/ecosalplus.esp-0002-2024" target="_blank" class="pub-link">[Article Link]</a>
+                    </span>
+                </li>
+                <li class="clearfix">
+                    <span class="pub-entry">
+                        <span class="pub-title"><em>Determining the rate-limiting processes for cell division in E. coli</em>.</span>
+                        <span class="pub-authors">Jaana Männik, Prathitha Kar, <strong>Chathuddasie Amarasinghe</strong>, Ariel Amir, Jaan Männik.</span>
+                        <span class="pub-journal">Nature Communications, 15</span>
+                        <span class="pub-date">(2024)</span>
+                        <a href="https://www.nature.com/articles/s41467-024-54242-w" target="_blank" class="pub-link">[Article Link]</a>
+                    </span>
+                </li>
+                </ul>
         </div>
 
         <button class="accordion">Selected Conference Presentations</button>
@@ -454,14 +522,56 @@
 
         <button class="accordion">Fellowships & Awards</button>
         <div class="panel">
+            <style>
+                .award-item {
+                    display: block;
+                    margin-bottom: 15px;
+                    padding-bottom: 5px;
+                    border-bottom: 1px dotted #e0e0e0;
+                }
+                .award-title {
+                    display: block;
+                    font-size: 1.1em;
+                    font-weight: 600; 
+                    color: #000000;
+                }
+                .award-entity {
+                    display: block;
+                    font-size: 1.0em; 
+                    font-weight: 400; 
+                    color: #333333;
+                    margin-top: 2px;
+                }
+            </style>
             <ul>
-                <li class="clearfix">Graduate Student Research Award – Graduate School – UT Knoxville <span class="right-align">2025</span></li>
-                <li class="clearfix">Three Minute Thesis (2nd Place) – Graduate Physics Society – UT Knoxville <span class="right-align">2025</span></li>
-                <li class="clearfix">Best Student Poster – Center for Nanophase Materials Sciences (ORNL) User Meeting <span class="right-align">2024</span></li>
-                <li class="clearfix">Lab Safety Culture Award (1st Place) – Environmental Health and Safety Committee, UT Knoxville <span class="right-align">2024</span></li>
-                <li class="clearfix">Graduate Student Senate Travel Award – UT Knoxville <span class="right-align">2023, 2024</span></li>
-                <li class="clearfix">Biophysical Society Travel Award – Biophysical Society <span class="right-align">2023</span></li>
-                <li class="clearfix">Departmental Fellowship – UT Knoxville <span class="right-align">2020–2023</span></li>
+                <li class="clearfix award-item">
+                    <span class="award-title">Graduate Student Research Award</span>
+                    <span class="award-entity">Graduate School – UT Knoxville <span class="right-align">2025</span></span>
+                </li>
+                <li class="clearfix award-item">
+                    <span class="award-title">Three Minute Thesis (2nd Place)</span>
+                    <span class="award-entity">Graduate Physics Society – UT Knoxville <span class="right-align">2025</span></span>
+                </li>
+                <li class="clearfix award-item">
+                    <span class="award-title">Best Student Poster</span>
+                    <span class="award-entity">Center for Nanophase Materials Sciences (ORNL) User Meeting <span class="right-align">2024</span></span>
+                </li>
+                <li class="clearfix award-item">
+                    <span class="award-title">Lab Safety Culture Award (1st Place)</span>
+                    <span class="award-entity">Environmental Health and Safety Committee, UT Knoxville <span class="right-align">2024</span></span>
+                </li>
+                <li class="clearfix award-item">
+                    <span class="award-title">Graduate Student Senate Travel Award</span>
+                    <span class="award-entity">Graduate Student Senate – UT Knoxville <span class="right-align">2023, 2024</span></span>
+                </li>
+                <li class="clearfix award-item">
+                    <span class="award-title">Biophysical Society Travel Award</span>
+                    <span class="award-entity">Biophysical Society <span class="right-align">2023</span></span>
+                </li>
+                <li class="clearfix award-item">
+                    <span class="award-title">Departmental Fellowship</span>
+                    <span class="award-entity">Department of Physics and Astronomy, UT Knoxville <span class="right-align">2020–2023</span></span>
+                </li>
             </ul>
         </div>
         

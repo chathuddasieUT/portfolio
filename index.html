@@ -824,13 +824,14 @@
         for (var i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function () {
 
+                var scrollPos = window.scrollY;
+
                 for (var j = 0; j < acc.length; j++) {
                     if (acc[j] !== this) {
                         acc[j].classList.remove("active");
                         acc[j].nextElementSibling.style.display = "none";
                     }
                 }
-
                 this.classList.toggle("active");
                 var panel = this.nextElementSibling;
 
@@ -839,9 +840,14 @@
                 } else {
                     panel.style.display = "block";
                 }
+
+                setTimeout(() => {
+                    this.scrollIntoView({ behavior: "smooth", block: "start" });
+                }, 50);
             });
         }
     </script>
+
 
     <div class="fixed-footer">
         © 2025 Chathuddasie Amarasinghe — Use of images without permission is prohibited.

@@ -334,6 +334,38 @@
             margin-top: 15px;
         }
 
+        .news-year {
+            font-size: 1.4em;
+            font-weight: 500;
+            margin: 25px 0 10px;
+            color: #000;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        .news-item {
+            background: linear-gradient(to right, #f8f8f8, #ffffff);
+            border-left: 4px solid #000;
+            padding: 12px 14px;
+            margin: 10px 0;
+            font-size: 1.05em;
+            line-height: 1.5;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .news-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .news-item strong {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+
+
     </style>
 </head>
 
@@ -383,7 +415,7 @@
 
             <div class="news-year">February 2025</div>
             <div class="news-item">📜 Presented a research poster at the <strong>2025 Biophysical Society Annual Meeting</strong>.</div>
-            <div class="news-item">📜 Presented a research poster at the <strong>Student Night Poster Session</strong>, organized by the UT Center for Advanced Materials & Manufacturing (CAMM), Oak Ridge Chapter of ASM International (ORCASMI), and the Eastern Tennessee Section of the American Ceramic Society (ACerS).</div>
+            <div class="news-item">📜 Presented a research poster at the <strong>Student Night Poster Session</strong>, organized by the UT Center for Advanced Materials & Manufacturing (CAMM), ORC ASM International, and the Eastern Tennessee Section of the American Ceramic Society (ACerS).</div>
             
 
             <div class="news-year">December 2024</div>
@@ -788,12 +820,20 @@
 
     <script>
         var acc = document.getElementsByClassName("accordion");
-        var i;
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
 
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+
+                for (var j = 0; j < acc.length; j++) {
+                    if (acc[j] !== this) {
+                        acc[j].classList.remove("active");
+                        acc[j].nextElementSibling.style.display = "none";
+                    }
+                }
+
+                this.classList.toggle("active");
                 var panel = this.nextElementSibling;
+
                 if (panel.style.display === "block") {
                     panel.style.display = "none";
                 } else {
@@ -802,6 +842,7 @@
             });
         }
     </script>
+
     <div class="fixed-footer">
         © 2025 Chathuddasie Amarasinghe — Use of images without permission is prohibited.
     </div>

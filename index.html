@@ -1,1038 +1,1233 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chathuddasie Amarasinghe</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&display=swap');
-        
-        body {
-            font-family: 'Playfair Display', serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #000000;
-            max-width: 800px;
-            margin: auto;
-            padding-top: 10px; 
-            line-height: 1.6;
-            letter-spacing: 0.05em;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chathuddasie Amarasinghe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0b0f;
+  --surface: #111318;
+  --surface2: #181c24;
+  --border: rgba(255,255,255,0.07);
+  --text: #e8e9ee;
+  --muted: #7a7f91;
+  --accent: #6ee7c7;
+  --highlight: #fbbf24;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --mono: 'DM Mono', monospace;
+  --sans: 'Outfit', system-ui, sans-serif;
+  --nav-h: 56px;
+}
 
-        .top-section {
-            background-color: rgba(245, 245, 245, 0.98);
-            display: flex;
-            justify-content: space-between;
-            padding: 50px;
-            align-items: center;
-            position: relative;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 87%;
-            max-width: 800px;
-            height: auto;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-        }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
 
-        .top-section img {
-            width: 150px;
-            height: auto;
-            border-radius: 8px;
-            object-fit: cover;
-            margin-left: 20px;
-        }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-        .intro-text {
-            max-width: 600px;
-        }
+/* noise overlay */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 1000; opacity: 0.4;
+}
 
-        .welcome-text {
-            font-size: 1.2em;
-            font-weight: 500;
-            margin-bottom: 12px;
-            letter-spacing: 0.02em;
-        }
+/* ═══════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 500;
+  background: rgba(10,11,15,0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+}
 
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  flex-shrink: 0;
+  padding: 0 1.25rem;
+  white-space: nowrap;
+}
 
-        h1 {
-            color: #000000;
-            font-weight: 500;
-            font-size: 2.0em;
-            letter-spacing: 0.1em;
-            margin-top: 0;
-        }
-        
-        h2 {
-            font-size: 1.2em;
-            font-weight: 500;
-            margin-top: 0;
-            margin-bottom: 5px;
-        }
+.nav-links {
+  display: flex;
+  list-style: none;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  flex: 1;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links li { flex-shrink: 0; }
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 0.73rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: block;
+  padding: 0 1rem;
+  line-height: var(--nav-h);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
 
-        p {
-            color: #000000;
-            font-size: 1.2em;
-            font-weight: 300;
-            margin-top: 10px;
-        }
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: var(--nav-h);
+  position: relative;
+  overflow: hidden;
+}
 
-        psmall {
-            color: #000000;
-            font-size: 1.1em;
-            font-weight: 300;
-            margin-top: 2px;
-        }
+.hero::after {
+  content: '';
+  position: absolute; top: -30%; right: -10%;
+  width: 700px; height: 700px;
+  background: radial-gradient(ellipse, rgba(110,231,199,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
 
-        .panel.psmall-panel {
-            padding: 20px;
-        }
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(3rem, 8vw, 8rem) clamp(2rem, 4vw, 5rem);
+  border-right: 1px solid var(--border);
+}
 
-        .professional-summary {
-            font-style: italic;
-            margin-bottom: 0px;
-            border-left: 3px solid #000000;
-            padding-left: 15px;
-            font-size: 1.1em;
-            color: #333333;
-        }
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block; width: 28px; height: 1px;
+  background: var(--accent);
+}
 
-        .accordion {
-            background-color: #f9f9f9;
-            color: #000000;
-            cursor: pointer;
-            padding: 20px;
-            width: 100%;
-            text-align: left;
-            border: 1px solid #e0e0e0;
-            outline: none;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            letter-spacing: 0.05em;
-            transition: background-color 0.2s;
-        }
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 4.5vw, 5rem);
+  line-height: 1.08;
+  margin-bottom: 0.5rem;
+}
+.hero-name em { font-style: italic; color: var(--accent); }
 
-        .accordion:hover {
-            background-color: #eeeeee;
-        }
+.hero-title {
+  font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+  font-weight: 300;
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+  letter-spacing: 0.02em;
+}
 
-        .active, .accordion:hover {
-            background-color: #dddddd;
-        }
+.hero-bio {
+  font-size: 0.97rem;
+  color: rgba(232,233,238,0.75);
+  max-width: 480px;
+  line-height: 1.8;
+  margin-bottom: 2.25rem;
+}
 
-        .accordion:after {
-            content: '\25BC';
-            font-size: 0.8em;
-            color: #000000;
-            margin-left: 10px;
-            transition: transform 0.2s;
-        }
+.hero-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
-        .active:after {
-            content: "\25B2";
-        }
+.btn {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 3px;
+  transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-primary { background: var(--accent); color: #0a0b0f; font-weight: 500; }
+.btn-primary:hover {
+  background: #9af0d9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(110,231,199,0.25);
+}
+.btn-ghost { border: 1px solid var(--border); color: var(--muted); }
+.btn-ghost:hover { border-color: var(--text); color: var(--text); }
 
-        .panel {
-            padding: 0 18px;
-            display: none;
-            background-color: #f9f9f9;
-            overflow: hidden;
-            margin-bottom: 15px;
-            border: 1px solid #e0e0e0;
-            border-top: none;
-        }
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(2rem, 4vw, 5rem);
+  gap: 1rem;
+}
 
-        ul {
-            padding: 10px 0 10px 20px;
-            list-style-type: none; 
-            color: #000000;
-        }
-        
-        .panel ul {
-             padding-left: 20px; 
-             list-style-type: disc; 
-        }
-        
-        .panel ul ul {
-            padding-left: 20px;
-            list-style-type: circle; 
-        }
+.hero-portrait {
+  width: 100%; aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%) contrast(1.05);
+  border: 1px solid var(--border);
+}
 
-        ul li {
-            margin-bottom: 10px;
-            font-size: 1.0em;
-            font-weight: 500;
-        }
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.stat-cell {
+  background: var(--bg);
+  padding: 1.5rem 1.25rem;
+  transition: background 0.2s;
+}
+.stat-cell:hover { background: var(--surface); }
+.stat-number {
+  font-family: var(--serif);
+  font-size: 2.25rem;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
 
-        a {
-            color: #000000;
-            text-decoration: none;
-        }
+/* hero fade-in */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero-left > * { opacity: 0; animation: fadeUp 0.6s forwards; }
+.hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+.hero-left > *:nth-child(3) { animation-delay: 0.3s; }
+.hero-left > *:nth-child(4) { animation-delay: 0.4s; }
+.hero-left > *:nth-child(5) { animation-delay: 0.5s; }
 
-        section {
-            margin-bottom: 40px;
-        }
+/* ═══════════════════════════════════════
+   SECTIONS
+═══════════════════════════════════════ */
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 7vw, 7rem) clamp(1.25rem, 5vw, 5rem);
+}
 
-        .contact-section {
-            text-align: center;
-            padding: 50px;
-            background-color: #f9f9f9;
-            margin-top: 40px;
-            border-top: 1px solid #e0e0e0;
-        }
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1.1;
+}
+.section-count {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
 
-        .contact-section h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #000;
-        }
+.full-bleed-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
 
-        .contact-section a {
-            font-size: 1.2em;
-            color: #000000;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-        }
+/* ═══════════════════════════════════════
+   NEWS
+═══════════════════════════════════════ */
+.news-year-marker {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1.5rem 0 0.6rem;
+  border-top: 1px solid var(--border);
+}
+.news-year-marker:first-child { border-top: none; padding-top: 0; }
 
-        .contact-section a:hover {
-            text-decoration: underline;
-        }
+.news-entry {
+  display: grid;
+  grid-template-columns: 8px 1fr;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.news-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 1px solid var(--muted);
+  margin-top: 0.55rem;
+  flex-shrink: 0;
+}
+.news-entry.featured .news-dot { background: var(--accent); border-color: var(--accent); }
+.news-text { font-size: 0.93rem; color: rgba(232,233,238,0.85); line-height: 1.65; }
+.news-text strong { color: var(--text); font-weight: 600; }
+.news-text a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(110,231,199,0.3); transition: border-color 0.2s; }
+.news-text a:hover { border-color: var(--accent); }
 
-        .linkedin-logo {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center; 
-            gap: 20px; 
-        }
+/* ═══════════════════════════════════════
+   PUBLICATIONS
+═══════════════════════════════════════ */
+.pubs-list { display: grid; gap: 1px; background: var(--border); }
+.pub-card {
+  background: var(--surface);
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1.25rem;
+  transition: background 0.2s;
+}
+.pub-card:hover { background: var(--surface2); }
+.pub-index { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); padding-top: 0.25rem; }
+.pub-journal-tag {
+  display: inline-block;
+  font-family: var(--mono); font-size: 0.66rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(110,231,199,0.3);
+  padding: 0.2rem 0.55rem; border-radius: 2px;
+  margin-bottom: 0.65rem;
+}
+.pub-title-text {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.1rem; line-height: 1.4;
+  color: var(--text); margin-bottom: 0.5rem;
+}
+.pub-authors { font-size: 0.83rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.6rem; }
+.pub-authors strong { color: rgba(232,233,238,0.9); font-weight: 600; }
+.pub-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.pub-year { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
+.pub-link-btn {
+  font-family: var(--mono); font-size: 0.7rem;
+  color: var(--accent); text-decoration: none;
+  letter-spacing: 0.06em;
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: opacity 0.2s;
+}
+.pub-link-btn:hover { opacity: 0.7; }
 
-        .linkedin-logo img {
-            width: 40px;
-            height: 40px;
-        }
-        
-        .right-align {
-            float: right;
-            font-weight: 300;
-        }
-        
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
+/* ═══════════════════════════════════════
+   EXPERIENCE TIMELINE
+═══════════════════════════════════════ */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 0; top: 0.5rem; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+.timeline-entry { position: relative; padding-bottom: 2.75rem; }
+.timeline-entry:last-child { padding-bottom: 0; }
+.timeline-entry::before {
+  content: '';
+  position: absolute; left: -2.35rem; top: 0.4rem;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--accent);
+}
+.timeline-period { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+.timeline-role { font-family: var(--serif); font-size: 1.35rem; color: var(--text); margin-bottom: 0.2rem; }
+.timeline-org { font-size: 0.88rem; color: var(--accent); font-weight: 500; margin-bottom: 0.85rem; }
+.timeline-bullets { list-style: none; display: grid; gap: 0.45rem; }
+.timeline-bullets li {
+  font-size: 0.88rem; color: rgba(232,233,238,0.75);
+  padding-left: 1.25rem; position: relative; line-height: 1.6;
+}
+.timeline-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--muted); font-size: 0.8rem; }
+.timeline-bullets a { color: var(--accent); text-decoration: none; }
 
-        .video-link {
-            color: #0000FF; 
-            text-decoration: underline; 
-        }
-        
-        .video-link:hover {
-            color: #0000CC; 
-            text-decoration: underline;
-        }
+/* ═══════════════════════════════════════
+   SKILLS
+═══════════════════════════════════════ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px; background: var(--border);
+}
+.skill-card { background: var(--surface); padding: 1.75rem; transition: background 0.2s; }
+.skill-card:hover { background: var(--surface2); }
+.skill-category {
+  font-family: var(--mono); font-size: 0.66rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.skill-category::after { content: ''; flex: 1; height: 1px; background: rgba(110,231,199,0.2); }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.skill-tag {
+  font-family: var(--mono); font-size: 0.7rem; color: var(--text);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.7rem; border-radius: 2px;
+  letter-spacing: 0.03em; transition: all 0.15s;
+}
+.skill-tag:hover { background: rgba(110,231,199,0.08); border-color: rgba(110,231,199,0.3); color: var(--accent); }
 
-        a:hover {
-            text-decoration: underline; 
-        }
+/* ═══════════════════════════════════════
+   AWARDS
+═══════════════════════════════════════ */
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1px; background: var(--border);
+}
+.award-card {
+  background: var(--surface); padding: 1.6rem;
+  position: relative; overflow: hidden; transition: background 0.2s;
+}
+.award-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--highlight);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+}
+.award-card:hover::before { transform: scaleX(1); }
+.award-card:hover { background: var(--surface2); }
+.award-year-tag { font-family: var(--mono); font-size: 0.68rem; color: var(--highlight); letter-spacing: 0.1em; margin-bottom: 0.65rem; }
+.award-name { font-family: var(--serif); font-size: 1rem; color: var(--text); margin-bottom: 0.35rem; line-height: 1.3; }
+.award-body { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
 
-        .poster-figure {
-            margin: 20px auto; 
-            padding: 10px;
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            text-align: center;
-            max-width: 60%; 
-        }
+/* ═══════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════ */
+.contact-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: clamp(4rem, 8vw, 8rem) 1.5rem;
+}
+.contact-heading { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 4rem); margin-bottom: 1rem; }
+.contact-sub { font-size: 0.97rem; color: var(--muted); max-width: 480px; margin: 0 auto 2.25rem; }
+.contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.contact-link {
+  font-family: var(--mono); font-size: 0.75rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--border); border-radius: 2px;
+  transition: all 0.2s;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.contact-link:hover { color: var(--text); border-color: var(--text); background: rgba(255,255,255,0.04); }
 
-        .poster-figure img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            display: block;
-            margin: 0 auto 10px auto;
-        }
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 1.5rem clamp(1.25rem, 5vw, 5rem);
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.06em;
+}
 
-        .poster-figcaption {
-            font-style: italic;
-            font-size: 0.95em;
-            color: #555555;
-            padding: 5px;
-            border-top: 1px dashed #cccccc;
-        }
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.visible { opacity: 1; transform: none; }
 
-        .fixed-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.85); 
-            color: #000000;
-            text-align: center;
-            padding: 8px 0;
-            font-size: 0.8em;
-            border-top: 1px solid #e0e0e0;
-            backdrop-filter: blur(4px); 
-            z-index: 2000;
-        }
+/* ═══════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════ */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 2px; }
 
-        .pub-entry {
-            display: block; 
-            margin-bottom: 25px; 
-            line-height: 1.4;
-        }
-
-        .pub-authors {
-            display: block;
-            font-size: 0.9em; 
-            color: #000; 
-            margin-bottom: 5px;
-        }
-
-        .pub-title {
-            display: block;
-            font-style: italic;
-            font-size: 1.1em;
-            color: #000;
-        }
-        
-        .pub-journal {
-            font-weight: 600; 
-            color: #000;
-            font-size: 1.0em;
-            display: inline-block; 
-        }
-        
-        .pub-date {
-            font-weight: 500;
-            color: #000;
-            margin-left: 10px;
-        }
-
-        .pub-link {
-            font-size: 0.9em;
-            margin-left: 15px;
-            color: #0000FF; 
-            text-decoration: underline;
-        }
-
-        .news-item {
-            padding: 12px 0;
-            border-bottom: 1px dashed #ccc;
-            font-size: 1.05em;
-        }
-
-        .news-year {
-            font-size: 1.3em;
-            font-weight: 500;
-            margin-top: 15px;
-        }
-
-        .news-year {
-            font-size: 1.4em;
-            font-weight: 500;
-            margin: 25px 0 10px;
-            color: #000;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
-        }
-
-        .news-item {
-            background: linear-gradient(to right, #f8f8f8, #ffffff);
-            border-left: 4px solid #000;
-            padding: 12px 14px;
-            margin: 10px 0;
-            font-size: 1.05em;
-            line-height: 1.5;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .news-item:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        }
-
-        .news-item strong {
-            background: #fff3cd;
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 3000;
-        background: rgba(255, 255, 255, 0.92);
-        backdrop-filter: blur(6px);
-        border-bottom: 1px solid #e0e0e0;
-        }
-
-        .topbar-inner {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 10px 16px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 16px;
-        }
-
-        .topbar a {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.0em;
-        font-weight: 500;
-        letter-spacing: 0.05em;
-        color: #000;
-        text-decoration: none;
-        padding: 6px 8px;
-        border-radius: 6px;
-        flex: 0 0 auto; 
-        }
-
-        .topbar a:hover {
-        background: #f2f2f2;
-        text-decoration: none;
-        }
-
-        @media (max-width: 600px) {
-        .topbar-inner {
-            justify-content: flex-start;     
-            overflow-x: auto;                 
-            -webkit-overflow-scrolling: touch;
-            white-space: nowrap;            
-            scrollbar-width: none;            
-        }
-
-        .topbar-inner::-webkit-scrollbar {
-            display: none;                   
-        }
-
-        .topbar a {
-            padding: 8px 10px;                
-        }
-        }
+/* ═══════════════════════════════════════
+   MOBILE  (max-width: 768px)
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav-logo { display: none; }
+  .nav-links { justify-content: flex-start; }
+  .nav-links a { padding: 0 0.85rem; font-size: 0.7rem; }
 
   
-        html {
-        scroll-padding-top: 70px;
-        }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-right { order: -1; padding: 0; gap: 0; }
 
-        .topbar a.nav-active {
-          background: #e3e3e3;
-        }
+  
+  .hero-portrait {
+    max-height: none;
+    aspect-ratio: unset;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .stat-number { font-size: 1.9rem; }
+  .stat-cell { padding: 1.1rem 1rem; }
+  .hero-left { border-right: none; padding: 2rem 1.25rem 2.5rem; }
+  .hero-name { font-size: clamp(2rem, 9vw, 2.8rem); }
+  .hero-bio { font-size: 0.9rem; }
+  .hero-cta { flex-direction: column; }
+  .btn { text-align: center; justify-content: center; }
+
+  .hero-credentials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.55rem;
+    margin-bottom: -0.25rem; 
+  }
+  .credential-tag {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: rgba(110,231,199,0.08);
+    border: 1px solid rgba(110,231,199,0.25);
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+  }
+
+  
+  section { padding: 2.75rem 1.25rem; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 0.35rem; margin-bottom: 1.75rem; }
+  .section-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+
+  
+  .pub-card { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.25rem; }
+  .pub-index { display: none; }
+
+ 
+  .timeline { padding-left: 1.5rem; }
+  .timeline-entry::before { left: -1.85rem; }
+  .timeline-role { font-size: 1.1rem; }
 
 
+  .skills-grid { grid-template-columns: 1fr; }
+  .awards-grid { grid-template-columns: 1fr; }
 
-    </style>
+  
+  .contact-heading { font-size: clamp(1.9rem, 8vw, 2.5rem); }
+  .contact-links { flex-direction: column; align-items: stretch; gap: 0.65rem; }
+  .contact-link { justify-content: center; }
+
+  
+  footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.5rem 1.25rem; }
+}
+</style>
 </head>
-
 <body>
-    <body>
-  <div id="top"></div>
 
-  <div class="topbar">
-    <div class="topbar-inner">
-      <a href="#top" class="nav-active">Home</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#publications">Publications</a>
-      <a href="#contact-us">Contact Me</a>
+<nav>
+  <a href="#top" class="nav-logo">CA</a>
+  <ul class="nav-links">
+    <li><a href="#news">News</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+
+<div id="top" class="hero">
+  <div class="hero-left">
+    <h1 class="hero-name">Chathuddasie<br><em>(Chat)</em><br>Amarasinghe</h1>
+    <p class="hero-title">PhD, CIMA Adv Dip MA</p>
+    <p class="hero-bio">7+ years of experience in life sciences research, advanced imaging, and specialized instrumentation. Investigating chromosome organization and intracellular dynamics in <em>E. coli</em> using fluorescence microscopy, genetic engineering, and computational modeling.</p>
+    <div class="hero-cta">
+      <a href="#publications" class="btn btn-primary">View Research ↗</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="ChatAtUT2.jpg" alt="Chathuddasie Amarasinghe" class="hero-portrait">
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-number">7+</div>
+        <div class="stat-label">Years of Research Experience</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">3+</div>
+        <div class="stat-label">Publications (PNAS, Nat. Commun.)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">11+</div>
+        <div class="stat-label">National conferences</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">9+</div>
+        <div class="stat-label">Research awards</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Research</div>
+      <h2 class="section-title">Publications</h2>
+    </div>
+    <div class="section-count">3 articles</div>
+  </div>
+
+  <div class="pubs-list">
+    <div class="pub-card reveal">
+      <div class="pub-index">01</div>
+      <div>
+        <div class="pub-journal-tag">PNAS · 2025</div>
+        <div class="pub-title-text">The role of active mRNA–ribosome dynamics and closing constriction in daughter chromosome separation in E. coli</div>
+        <div class="pub-authors"><strong>Chathuddasie Amarasinghe</strong>, Mu-Hung Chang, Jaana Männik, Scott T. Retterer, Maxim O. Lavrentovich, Jaan Männik</div>
+        <div class="pub-meta">
+          <span class="pub-year">Proc. Natl. Acad. Sci. 122(45)</span>
+          <a href="https://www.pnas.org/doi/abs/10.1073/pnas.2508100122" target="_blank" class="pub-link-btn">Read article ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-index">02</div>
+      <div>
+        <div class="pub-journal-tag">EcoSal Plus · 2025</div>
+        <div class="pub-title-text">The role of macromolecular crowders in the formation and compaction of the E. coli nucleoid</div>
+        <div class="pub-authors">Jaan Männik, Jaana Männik, <strong>Chathuddasie Amarasinghe</strong>, Mu-Hung Chang, Maxim O. Lavrentovich</div>
+        <div class="pub-meta">
+          <span class="pub-year">EcoSal Plus, Vol. 13, No. 1</span>
+          <a href="https://journals.asm.org/doi/full/10.1128/ecosalplus.esp-0002-2024" target="_blank" class="pub-link-btn">Read article ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-index">03</div>
+      <div>
+        <div class="pub-journal-tag">Nature Communications · 2024</div>
+        <div class="pub-title-text">Determining the rate-limiting processes for cell division in E. coli</div>
+        <div class="pub-authors">Jaana Männik, Prathitha Kar, <strong>Chathuddasie Amarasinghe</strong>, Ariel Amir, Jaan Männik</div>
+        <div class="pub-meta">
+          <span class="pub-year">Nat. Commun. 15</span>
+          <a href="https://www.nature.com/articles/s41467-024-54242-w" target="_blank" class="pub-link-btn">Read article ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-bleed-divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Career</div>
+      <h2 class="section-title">Research Experience</h2>
     </div>
   </div>
 
-    <div class="top-section">
-        <div class="intro-text">
-            <h1>Chathuddasie (Chat) Amarasinghe</h1>
-            <p class="welcome-text">Welcome and thanks for visiting!</p>
-            <psmall>I'm a dedicated PhD candidate in Biophysics, bringing 7+ years of experience in life sciences research, advanced imaging, and specialized instrumentation. Explore what I do below, and feel free to connect with me!</psmall>
-          </div>
-        <img src="ChatAtUT.jpg" alt="Personal Image">
+  <div class="timeline">
+    <div class="timeline-entry reveal">
+      <div class="timeline-period">May 2021 – Present</div>
+      <div class="timeline-role">Graduate Research Assistant</div>
+      <div class="timeline-org">University of Tennessee, Knoxville</div>
+      <ul class="timeline-bullets">
+        <li>Led research on chromosome organization and intracellular dynamics in <em>E. coli</em>, combining imaging, genetic engineering, and computational modeling.</li>
+        <li>Conducted 60+ high-throughput time-lapse fluorescence microscopy experiments using Nikon Ti-E, enhancing temporal resolution from 3 min to 6 sec via custom laser integration.</li>
+        <li>Developed deep learning–based image analysis tools (U-Net CNN) for microscopy data.</li>
+        <li>Engineered 9+ bacterial strains with fluorescent labels for live-cell imaging.</li>
+        <li>Independently authored proposals securing funding for optical filters and lab materials.</li>
+        <li>Mentored 6+ graduate and undergraduate students in experimental techniques and data analysis.</li>
+      </ul>
     </div>
 
-    <div id="accordion-sections">
+    <div class="timeline-entry reveal">
+      <div class="timeline-period">August 2022 – May 2025</div>
+      <div class="timeline-role">Facility User — Cleanroom Microfabrication</div>
+      <div class="timeline-org">Oak Ridge National Laboratory · CNMS</div>
+      <ul class="timeline-bullets">
+        <li>Designed and fabricated microfluidic devices using e-beam lithography (JEOL 9300FS), photolithography, and RIE — achieving a 140% increase in cell capture.</li>
+        <li>Gained independent user access to JEOL 8100FS EBL, Suss MicroTech Aligner, Thermionics VE-240, Oxford PlasmaLab 100 RIE, and Zeiss Merlin FE-SEM.</li>
+      </ul>
+    </div>
 
-        <section style="margin-top: -50px;">
-            <p class="professional-summary"></p>
-        </section>
+    <div class="timeline-entry reveal">
+      <div class="timeline-period">June 2020 – August 2020</div>
+      <div class="timeline-role">Research Assistant</div>
+      <div class="timeline-org">University of Tennessee, Knoxville</div>
+      <ul class="timeline-bullets">
+        <li>Simulated chromosome segregation in <em>E. coli</em> using molecular dynamics (ESPResSo) on the university's HPC cluster.</li>
+      </ul>
+    </div>
 
-        <button class="accordion">News & Updates</button>
-        <div class="panel">
-            <div class="news-year">April 2026</div>
-            <div class="news-item"> Received the <strong>2026 Excellence in Graduate Research Award</strong> by the Graduate Student Senate at the University of Tennessee.</div>
-            <div class="news-item"> Mentored and trained two undergraduate researchers to conduct independent research and present their work at <strong>EUReCA</strong>, the University of Tennessee’s annual showcase of undergraduate research and creative achievements.<br>
-                <a href="https://symposium.foragerone.com/eureca-2026/presentations/78697" target="_blank" class="video-link">
-                    Click here to view the poster.
-                </a>
-            </div>
-            <div class="news-item">
-              Launched a <strong>Researcher Personality Quiz</strong>, a fun side project exploring how individuals approach research across dimensions such as planning, experimentation, and publication style. While not a formal psychometric tool, the quiz reflects a personal interest in understanding work styles and human behavior in research environments. 
-              <a href="https://researcherpersonalitystylequiz.netlify.app/" target="_blank" class="video-link">
-                Take the quiz here.
-              </a>
-            </div>
-            <div class="news-item"> Presented a research poster at the <strong>Biomembranes Symposium 2026 at University of Tennessee, Knoxville</strong>.</div>
+    <div class="timeline-entry reveal">
+      <div class="timeline-period">August 2019 – December 2019</div>
+      <div class="timeline-role">Volunteer Graduate Researcher</div>
+      <div class="timeline-org">University of North Carolina at Charlotte</div>
+      <ul class="timeline-bullets">
+        <li>Assisted protein–ligand interaction studies using Microscale Thermophoresis (MST) to quantify binding affinities.</li>
+        <li>Created an <a href="https://youtu.be/R4wtuilKAqo?si=ZP9apWX_SjBtwZht" target="_blank">educational YouTube video on MST</a> gaining 11k+ views.</li>
+      </ul>
+    </div>
 
-            <div class="news-year">March 2026</div>
-            <div class="news-item"> Named a <strong>2026 Volunteer of Distinction</strong> by the Office of the Provost at the University of Tennessee.</div>
+    <div class="timeline-entry reveal">
+      <div class="timeline-period">March 2018 – May 2019</div>
+      <div class="timeline-role">Undergraduate Researcher</div>
+      <div class="timeline-org">University of Peradeniya, Sri Lanka</div>
+      <ul class="timeline-bullets">
+        <li>Developed biodegradable antimicrobial packaging by synthesizing CaO nanoparticles for corn starch-based polymer films.</li>
+        <li>Characterized morphology (SEM), tensile strength, and antimicrobial properties.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-            <div class="news-year">February 2026</div>
-            <div class="news-item"> Successfully defended my <strong>Ph.D. in Physics (Biophysics)</strong>.</div>
-            <div class="news-item"> Presented a research poster at the <strong>2026 Biophysical Society Annual Meeting</strong>.</div>
-            
-       
-            <div class="news-year">December 2025</div>
-            <div class="news-item"> Research featured in <strong>UT Physics News</strong>: <a href="https://physics.utk.edu/uts-biophysics-group-investigates-how-chromosomes-separate/" target="_blank" class="video-link">Read the article here.</a></div>
+<div class="full-bleed-divider"></div>
 
-            <div class="news-year">November 2025</div>
-            <div class="news-item"> Received the <strong>2026 Biophysical Society (BPS) Travel Award</strong>.</div>
-            <div class="news-item"> Published in <strong>PNAS</strong>: <a href="https://www.pnas.org/doi/abs/10.1073/pnas.2508100122" target="_blank" class="video-link">The role of active mRNA–ribosome dynamics and closing constriction in daughter chromosome separation in <em>Escherichia coli</em></a>.</div>
-            <div class="news-item"> Renewed <strong>CITI Conflict of Interest</strong> and <strong>Responsible Conduct of Research (RCR)</strong> certifications.</div>
-            
-            <div class="news-year">October 2025</div>
-            <div class="news-item"> Earned the <strong>My Green Lab® Ambassador</strong> certification by completing sustainability training on best laboratory practices.</div>
-            <div class="news-year">August 2025</div>
-            <div class="news-item"> Presented at the <strong>CNMS User Meeting 2025</strong>.</div>
+<!-- TEACHING -->
+<section id="teaching">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Education</div>
+      <h2 class="section-title">Teaching Experience</h2>
+    </div>
+  </div>
 
-            <div class="news-year">July 2025</div>
-            <div class="news-item"> Published in <strong>EcoSal Plus</strong>: <a href="https://journals.asm.org/doi/full/10.1128/ecosalplus.esp-0002-2024" target="_blank" class="video-link">The role of macromolecular crowders in the formation and compaction of the <em>Escherichia coli</em> nucleoid.</a></div>
-         
+  <div class="timeline">
 
-            <div class="news-year">April 2025</div>
-            <div class="news-item"> Received the <strong>Graduate Student Research Award (GSRA)</strong>, UT Knoxville, through a competitive, peer-reviewed grant proposal; funds were used to purchase advanced optical filters and essential laboratory materials.</div>
-            <div class="news-item"> Won <strong>Second Place</strong> in the <strong>Three Minute Thesis (3MT)</strong> competition, organized by Graduate Physics Society, University of Tennessee.</div>
-            <div class="news-item"> Mentored and trained an undergraduate researcher to conduct independent research and present their work at <strong>EUReCA</strong>, the University of Tennessee’s annual showcase of undergraduate research and creative achievements.<br>
-                <a href="https://symposium.foragerone.com/eureca-2025/presentations/72540" target="_blank" class="video-link">
-                    Click here to view the poster.
-                </a>
-            </div>
-            <div class="news-item"> Presented a research poster at the <strong> Biomembranes Symposium 2025 at University of Tennessee, Knoxville</strong>.</div>
-
-            <div class="news-year">March 2025</div>
-            <div class="news-item"> Presented at the <strong>2025 Women In Microscopy Conference.</strong><a href="https://youtu.be/6FR0FmpzS88?si=TL6EEwzGCyFmpJ6F&t=6237" target="_blank" class="video-link">Video Link</a></div>
-            <div class="news-item"> Presented at the <strong>2025 Young Biophysicists Meeting.</strong></div>
-            <div class="news-item"> Presented a research poster at the <strong>Prospective Graduate Student Poster Session, Department of Physics, UT Knoxville</strong>, introducing prospective students to ongoing research in biophysics.</div>
-
-            <div class="news-year">February 2025</div>
-            <div class="news-item"> Presented a research poster at the <strong>2025 Biophysical Society Annual Meeting</strong>.</div>
-            <div class="news-item"> Presented a research poster at the <strong>Student Night Poster Session</strong>, organized by the UT Center for Advanced Materials & Manufacturing (CAMM), ORC ASM International, and the Eastern Tennessee Section of the American Ceramic Society (ACerS).</div>
-            
-
-            <div class="news-year">December 2024</div>
-            <div class="news-item"> Received the <strong>Graduate Student Senate (GSS) Travel Award</strong>, UT Knoxville.</div>
-            <div class="news-item"> Delivered a talk at the <strong>Lab Safety Culture Awards Dinner</strong> at UT Knoxville on the housekeeping and safety practices in the Männik Lab.</div>
-            <div class="news-item"> Research featured in <strong>UT Physics News</strong>: <a href="https://physics.utk.edu/uts-biophysics-research-lays-the-groundwork-for-designing-new-antibiotics/" target="_blank" class="video-link">Read the article here.</a></div>
-           
-
-            <div class="news-year">November 2024</div>
-            <div class="news-item"> Published in <strong>Nature Communications</strong>: <a href="https://www.nature.com/articles/s41467-024-54242-w" target="_blank" class="video-link">Determining the rate-limiting processes for cell division in <em>Escherichia coli</em></a>.</div>
-            
-            <div class="news-year">August 2024</div>
-            <div class="news-item"> Presented a research poster at the <strong>CNMS User Meeting 2024</strong>.</div>
-            <div class="news-item"> Won the <strong>Best Student Poster Award</strong>, CNMS User Meeting (ORNL).</div>
-            
-            <div class="news-year">June 2024</div>
-            <div class="news-item"> Awarded <strong>First Place, Lab Safety Culture Award</strong>, UT Knoxville.</div>
-
-            <div class="news-year">May 2024</div>
-            <div class="news-item"> Presented at the <strong>2024 Southeastern Microscopy Society (SEMS) meeting.</strong></div>
-            <div class="news-item"> Demonstrated live-cell imaging and hands-on physics experiments for high school students in the <strong>Governor’s School for the Sciences and Engineering (GSSE)</strong> Summer Program at UT Knoxville.</div>
-
-            <div class="news-year">March 2024</div>
-            <div class="news-item"> Initiated <strong>Biophysics Journal Club</strong> with members of Männik Lab.</div>
-            <div class="news-item"> Presented a research poster at the <strong>Prospective Graduate Student Poster Session, Department of Physics, UT Knoxville</strong>, introducing prospective students to ongoing research in biophysics.</div>
-
-
-            <div class="news-year">February 2024</div>
-            <div class="news-item"> <strong>Co-chaired and presented</strong> at the <strong>Biophysical Society Annual Meeting</strong>.</div>
-            
-            <div class="news-year">December 2023</div>
-            <div class="news-item"> Received the <strong>Graduate Student Senate (GSS) Travel Award</strong>, UT Knoxville.</div>
-
-            <div class="news-year">November 2023</div>
-            <div class="news-item"> Received the <strong>Biophysical Society Travel Award (2024 cycle)</strong>.</div>
-
-            <div class="news-year">August 2023</div>
-            <div class="news-item"> Presented a research poster at the <strong>CNMS User Meeting 2023</strong>.</div>
-            <div class="news-item"> Presented a research poster at the <strong>Bredesen Center (GST) New Student Orientation & Poster Session 2023</strong>, introducing incoming graduate students to rotation and research opportunities.</div>
-
-
-            <div class="news-year">June 2023</div>
-            <div class="news-item"> Earned the <strong>Introduction to Databases</strong> certification via Coursera.</div>
-
-            <div class="news-year">May 2023</div>
-            <div class="news-item"> Earned the <strong>Data Engineering Foundations</strong> certification via LinkedIn Learning, strengthening core skills in data pipelines, databases, and analytics workflows.</div>
-            <div class="news-item"> Demonstrated live-cell imaging and hands-on physics experiments for high school students in the <strong>Governor’s School for the Sciences and Engineering (GSSE)</strong> Summer Program at UT Knoxville.</div>
-
-            
-
-            
-            <div class="news-year">November 2022</div>
-            <div class="news-item"> Successfully passed the <strong>PhD Comprehensive Exam</strong> with the defense of my doctoral research proposal.</div>
-
-            <div class="news-year">August 2022</div>
-            <div class="news-item"> Began hands-on microfabrication work at the <strong>ORNL CNMS Cleanroom</strong>.</div>
-            <div class="news-item"> Achieved independent user access for advanced microfabrication tools at the ORNL CNMS cleanroom: <strong>JEOL 8100 FS E-Beam Lithography</strong>, <strong>Suss MicroTech Contact Aligner</strong>, <strong>Thermionics VE-240 e-beam evaporator</strong>, <strong>Oxford PlasmaLab System 100 RIE</strong>, and <strong>Zeiss Merlin FE-SEM</strong>.</div>
-          
-            
-            <div class="news-year">August 2021</div>
-            <div class="news-item"> Successfully passed the <strong>Physics PhD Qualifying Exam</strong> at the University of Tennessee, Knoxville.</div>
-
-            <div class="news-year">May 2021</div>
-            <div class="news-item"> Joined the Männik Lab as a <strong>Graduate Research Assistant</strong>, gaining initial hands-on experience in fabricating microfluidic devices and independently operating the Nikon Ti-E inverted epifluorescence microscope for live cell imaging.</div>
-     
-            <div class="news-year">August 2020</div>
-            <div class="news-item"> Joined <strong>PhD program in Physics</strong> at the University of Tennessee, Knoxville. Go Vols! </div>
-
-            <div class="news-year">June 2020</div>
-            <div class="news-item"> Joined the Männik Lab as a <strong>Research Assistant</strong> to study chromosome segregation using large-scale molecular dynamics modeling on HPC with <em>ESPResSo</em>.</div>
-
-            <div class="news-year">May 2020</div>
-            <div class="news-item"> Earned the <strong>ACS Reviewer Lab Certification</strong> (American Chemical Society).</div>
-            
-            <div class="news-year"></div>
-        </div>
-
-
-        <button class="accordion">Education</button>
-        <div class="panel">
-            <ul>
-                <li class="clearfix"><strong>Ph.D. in Physics (Biophysics Concentration)</strong> <span class="right-align">Fall 2020 – May 2026 (Expected)</span>
-                    <br>University of Tennessee, Knoxville, TN | GPA: 3.82/4.00
-                </li>
-                <li class="clearfix">
-                    <strong>Ph.D. Program in Nanoscale Science (Transferred after first year)</strong> <span class="right-align">Aug 2019 – May 2020</span>
-                    <br>University of North Carolina at Charlotte, Charlotte, NC | GPA: 3.80/4.00
-                </li>
-                <li class="clearfix"><strong>Bachelor of Science (Honors) in Physics</strong> <span class="right-align">2014 – 2018</span>
-                    <br>University of Peradeniya, Peradeniya, Sri Lanka
-                </li>
-                <li class="clearfix"><strong>Advanced Diploma in Management Accounting</strong> <span class="right-align">2013 – 2014</span>
-                    <br>Chartered Institute of Management Accountants (CIMA), London EC2A 4ES, UK
-                </li>
-            </ul>
-        </div>
-
-        <button class="accordion" id="experience">Research Experience</button>
-        <div class="panel">
-            <ul>
-                <li class="clearfix">
-                    <h2>Graduate Research Assistant – University of Tennessee, Knoxville</h2> <span class="right-align">May 2021 – Present</span>
-                    <ul>
-                        <li>Led research on chromosome organization and intracellular dynamics in <em>Escherichia coli</em>, combining imaging, genetic engineering, and computational modeling.</li>
-                        <li>Independently authored proposals securing funding for optical filters and other essential laboratory materials used in experiments.</li>
-                        <li>Conducted 60+ high-throughput time-lapse fluorescence microscopy experiments using Nikon Ti-E inverted epifluorescence microscope, enhancing temporal resolution from 3 minutes to 6 seconds through custom laser integration.</li>
-                        <li>Developed deep learning–based image analysis tools for microscopy data.</li>
-                        <li>Engineered 9+ bacterial strains with fluorescent labels for live-cell imaging.</li>
-                        <li>Analyzed experimental data and collaborated on developing partial differential equation models and molecular dynamics simulations (LAMMPS) to provide theoretical context and quantitative grounding for experimental findings.</li>
-                        <li>Mentored 6+ graduate and undergraduate students in experimental techniques and data analysis.</li>
-                    </ul>
-                </li>
-                <li class="clearfix">
-                    <h2>Facility User – Oak Ridge National Laboratory, Oak Ridge</h2> <span class="right-align">August 2022 – May 2025</span>
-                    <ul>
-                       <li>Designed and fabricated microfluidic devices in cleanroom facilities at the Center for Nanophase Materials Sciences (CNMS), Oak Ridge National Laboratory (ORNL), using electron-beam lithography <em>(JEOL 9300FS 100kV Electron Beam Lithography System)</em>, photolithography <em>(Suss MicroTech Contact Aligner)</em>, and RIE <em>(Oxford Plasmalab System 100 Reactive Ion Etcher)</em>, achieving a 140% increase in cell capture.</li>
-                       <li>Gained independent user access to advanced nanofabrication tools and collaborated closely with facility engineers to troubleshoot and overcome fabrication challenges.</li>
-                    </ul>
-                </li>
-                <li class="clearfix">
-                    <h2>Research Assistant – University of Tennessee, Knoxville</h2> <span class="right-align">June 2020 – Aug 2020</span>
-                    <ul>
-                        <li>Simulated chromosome segregation in <em>E. coli</em> using molecular dynamics (ESPResSo) on the university’s high-performance computing (HPC) cluster.</li>
-                        <figure class="poster-figure">
-                            <img src="EspressoModel.png" alt="Espresso modeling">
-                            <figcaption class="poster-figcaption">Snapshot from our molecular dynamics simulation showing two segregating chromosomes (red and blue) in the presence of macromolecular crowding (yellow).</figcaption>
-                        </figure>
-                    </ul>
-                </li>
-                <li class="clearfix">
-                    <h2>Volunteer Graduate Researcher – University of North Carolina at Charlotte</h2> <span class="right-align">Aug 2019 – Dec 2019</span>
-                    <ul>
-                        <li>Assisted protein–ligand interaction studies using Microscale Thermophoresis (MST) to quantify binding affinities under varying buffer conditions.</li>
-                        <li>Prepared and optimized biological samples, including protein purification and buffer formulation, to ensure accurate and reproducible measurements.</li>
-                        <li>As a fun side project, created an educational YouTube video explaining the principles of Microscale Thermophoresis (MST) during its early adoption, gaining 11k+ views and positive feedback:
-                            <a href="https://youtu.be/R4wtuilKAqo?si=ZP9apWX_SjBtwZht" target="_blank" class="video-link">Video Link</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="clearfix">
-                    <h2>Undergraduate Researcher – University of Peradeniya, Sri Lanka</h2> <span class="right-align">March 2018 – May 2019</span>
-                    <ul>
-                        <li>Developed biodegradable and antimicrobial packaging material. This involved synthesizing CaO nanoparticles and incorporating them into corn starch-based polymer films.</li>
-                        <li>Characterized nanoparticle morphology and dispersion within corn starch composites using SEM imaging.</li>
-                        <li>Characterized film tensile strength and antimicrobial properties.</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-
-        <button class="accordion">Teaching Experience</button>
-        <div class="panel">
-            <ul>
-                <li class="clearfix">
-                    <h2>Graduate Teaching Assistant – University of Tennessee, Knoxville</h2> <span class="right-align">August 2020 – May 2021</span>
-                    <ul>
-                        <li><strong>Physics 421 (Modern Optics Lab)</strong>: Topics include transmission of light in uniform, isotropic media, reflection and transmission at interfaces, mathematics of wave motion and interference effects, rudiments of Fourier optics and holography.</li>
-                            <ul>
-                            <li>Assisted the supervising faculty member by grading assignments and examinations.</li>
-                            <li>Ensured the safe use of lasers during laboratory sessions.</li> 
-                            <li>Assisted students by troubleshooting experimental setups.</li>
-                            <li>Evaluated student lab reports.</li>
-                            </ul>
-                            <figure class="poster-figure">
-                            <img src="Phys421.png" alt="Demonstration of optical alignment principles in the Physics 421 Modern Optics Lab.">
-                            <figcaption class="poster-figcaption">Demonstration of optical alignment principles in the Physics 421 Modern Optics Lab.</figcaption>
-                            </figure>
-                        <li><strong>Physics 221 (Elements of Physics I Lab)</strong>: Basic physical principles and applications required in pre-medical, pre-pharmacy, and pre-veterinary programs. Topics include mechanics, heat, and wave motion.</li>
-                            <ul>
-                                <li>Conducted online recitations via Zoom to support student learning.</li>
-                                <li>Troubleshot experimental setups during laboratory sessions.</li>
-                                <li>Graded quizzes and lab reports.</li>
-                            </ul>
-                    </ul>
-                </li>
-                <li class="clearfix">
-                    <h2>Graduate Teaching Assistant – University of North Carolina at Charlotte</h2> <span class="right-align">August 2019 – May 2020</span>
-                    <ul>
-                        <li><strong>Chemistry 1251L (General Chemistry I Lab)</strong>: Topics include quantitative measurements, solution preparation, chemical reactions and stoichiometry, thermochemical processes, and properties of materials.</li>
-                        <ul>
-                           <li>Managed weekly laboratory preparation for 15+ sections by organizing equipment and chemicals, ensuring all materials were accessible and ready for each session.</li>
-                           <li>Guided and evaluated 40+ undergraduate students in my assigned sections on the safe execution of laboratory experiments, including proper handling and disposal of chemicals.</li>
-                           <li>Adapted quickly to COVID-19 lockdowns by transitioning to online instruction, developing engaging video lessons to maintain continuity and student engagement.</li>
-                        </ul>
-                    </ul>
-                </li>
-                <li class="clearfix">
-                    <h2>Teaching Assistant – University of Peradeniya, Sri Lanka</h2> <span class="right-align">January 2019 – July 2019</span>
-                    <ul>
-                        <li><strong>Physics 481 (Advanced Physics Laboratory III)</strong>:
-            <ul>
-                <li>Demonstrated and supervised 400-level undergraduate laboratory sessions focused on the Mechanical Testing Machine.</li>
-            </ul>
+    <div class="timeline-entry reveal">
+      <div class="timeline-period">August 2020 – May 2021</div>
+      <div class="timeline-role">Graduate Teaching Assistant</div>
+      <div class="timeline-org">University of Tennessee, Knoxville</div>
+      <ul class="timeline-bullets">
+        <li><strong>Physics 421 — Modern Optics Lab:</strong> Topics include transmission of light in uniform/isotropic media, reflection and transmission at interfaces, wave motion and interference, Fourier optics, and holography.
+          <ul style="margin-top:0.4rem; padding-left:1.25rem; list-style:none; display:grid; gap:0.3rem;">
+            <li style="font-size:0.85rem; color:rgba(232,233,238,0.65); padding-left:1rem; position:relative;">Assisted the supervising faculty by grading assignments and exams.</li>
+            <li style="font-size:0.85rem; color:rgba(232,233,238,0.65); padding-left:1rem; position:relative;">Ensured safe laser use during laboratory sessions and troubleshot experimental setups.</li>
+            <li style="font-size:0.85rem; color:rgba(232,233,238,0.65); padding-left:1rem; position:relative;">Evaluated student lab reports.</li>
+          </ul>
         </li>
-        <li><strong>Physics 361 (Biophysics)</strong>:
-            <ul>
-                <li>Prepared comprehensive tutorial materials and marking schemes, and evaluated student submissions for this upper-division course.</li>
-            </ul>
+        <li><strong>Physics 221 — Elements of Physics I Lab:</strong> Basic physical principles for pre-medical, pre-pharmacy, and pre-veterinary programs; topics include mechanics, heat, and wave motion.
+          <ul style="margin-top:0.4rem; padding-left:1.25rem; list-style:none; display:grid; gap:0.3rem;">
+            <li style="font-size:0.85rem; color:rgba(232,233,238,0.65); padding-left:1rem; position:relative;">Conducted online recitations via Zoom and troubleshot lab setups.</li>
+            <li style="font-size:0.85rem; color:rgba(232,233,238,0.65); padding-left:1rem; position:relative;">Graded quizzes and lab reports.</li>
+          </ul>
         </li>
-        <li><strong>Physics 280 (General Physics Laboratory I)</strong>:
-            <ul>
-                <li>Demonstrated and supervised 200-level undergraduate laboratory sessions for 100+ students.</li>
-                <li>Key duties included compiling laboratory handouts, preparing and grading prelab quizzes, and evaluating student lab reports.</li>
-            </ul>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-
-        <button class="accordion" id="publications">Publications</button>
-        <div class="panel">
-            <ul>
-                <li class="clearfix">
-                    <span class="pub-entry">
-                        <span class="pub-title"><em>The role of active mRNA–ribosome dynamics and closing constriction in daughter chromosome separation in E. coli</em>.</span>
-                        <span class="pub-authors"><strong>Chathuddasie Amarasinghe</strong>, Mu-Hung Chang, Jaana Männik, Scott T. Retterer, Maxim O. Lavrentovich, Jaan Männik.</span>
-                        <span class="pub-journal">Proceedings of the National Academy of Sciences, 122(45)</span>
-                        <span class="pub-date">(2025)</span>
-                        <a href="https://www.pnas.org/doi/abs/10.1073/pnas.2508100122" target="_blank" class="pub-link">[Article Link]</a>
-                    </span>
-                </li>
-                <li class="clearfix">
-                    <span class="pub-entry">
-                        <span class="pub-title"><em>The role of macromolecular crowders in the formation and compaction of the E. coli nucleoid</em>.</span>
-                        <span class="pub-authors">Jaan Männik, Jaana Männik, <strong>Chathuddasie Amarasinghe</strong>, Mu-Hung Chang, Maxim O. Lavrentovich.</span>
-                        <span class="pub-journal">EcoSal Plus, Vol. 13, No. 1, eesp-0002-2024 </span>
-                        <span class="pub-date">(2025)</span>
-                        <a href="https://journals.asm.org/doi/full/10.1128/ecosalplus.esp-0002-2024" target="_blank" class="pub-link">[Article Link]</a>
-                    </span>
-                </li>
-                <li class="clearfix">
-                    <span class="pub-entry">
-                        <span class="pub-title"><em>Determining the rate-limiting processes for cell division in E. coli</em>.</span>
-                        <span class="pub-authors">Jaana Männik, Prathitha Kar, <strong>Chathuddasie Amarasinghe</strong>, Ariel Amir, Jaan Männik.</span>
-                        <span class="pub-journal">Nature Communications, 15</span>
-                        <span class="pub-date">(2024)</span>
-                        <a href="https://www.nature.com/articles/s41467-024-54242-w" target="_blank" class="pub-link">[Article Link]</a>
-                    </span>
-                </li>
-                </ul>
-        </div>
-
-        <button class="accordion">Selected Conference Presentations</button>
-        <div class="panel">
-            <ul>
-                <li><strong>Oral Presentations:</strong>
-                    <ul>
-                        <li>Center for Nanophase Materials Sciences User Meeting 2025</li>
-                        <figure class="poster-figure">
-                            <img src="chatcnms2025.jpg" alt="Chathuddasie Amarasinghe presenting at CNMS User Meeting 2025">
-                            <figcaption class="poster-figcaption">Presenting the latest findings on ribosomal dynamics and nucleoid separation in <em>E. coli</em> at the CNMS User Meeting 2025.</figcaption>
-                        </figure>
-                        <li>Women in Microscopy Conference 2025: <a href="https://youtu.be/6FR0FmpzS88?si=TL6EEwzGCyFmpJ6F&t=6237" target="_blank" class="video-link">Video Link</a></li>
-                        <li>Biophysical Society Annual Meeting 2024 (Co-chair)</li>
-                        <figure class="poster-figure">
-                            <img src="chatbps2024.jpg" alt="Chathuddasie Amarasinghe presenting at BPS Annual Meeting 2024">
-                            <figcaption class="poster-figcaption">Co-chairing and presenting my research at the "Chromatin and the Nucleoid" Platform Session at the Biophysical Society Annual Meeting 2024.</figcaption>
-                        </figure>
-                        <li>Southeastern Microscopy Society Annual Meeting 2024 (Ruska Candidate)</li>
-                    </ul>
-                </li>
-                <li><strong>Poster Presentations:</strong>
-                    <ul>
-                        <li>Biophysical Society Annual Meeting 2025 & 2026</li>
-                        <li>Biomembranes Symposium 2025 & 2026 at University of Tennessee, Knoxville</li>
-                        <li>Center for Nanophase Materials Sciences User Meeting 2024 & 2023</li>
-                        <figure class="poster-figure">
-                            <img src="chatcnms2024.jpg" alt="Chathuddasie Amarasinghe presenting a poster at CNMS User Meeting 2024">
-                            <figcaption class="poster-figcaption">Poster presentation at the CNMS User Meeting 2024, which earned the Best Student Poster Award.</figcaption>
-                        </figure>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-
-        <button class="accordion">Fellowships & Awards</button>
-        <div class="panel">
-            <style>
-                .award-item {
-                    display: block;
-                    margin-bottom: 15px;
-                    padding-bottom: 5px;
-                    border-bottom: 1px dotted #e0e0e0;
-                }
-                .award-title {
-                    display: block;
-                    font-size: 1.1em;
-                    font-weight: 600; 
-                    color: #000000;
-                }
-                .award-entity {
-                    display: block;
-                    font-size: 1.0em; 
-                    font-weight: 400; 
-                    color: #333333;
-                    margin-top: 2px;
-                }
-            </style>
-            <ul>
-                <li class="clearfix award-item">
-                    <span class="award-title">Excellence in Graduate Research</span>
-                    <span class="award-entity">Graduate Student Senate – University of Tennessee, Knoxville <span class="right-align">2026</span></span>
-                </li>
-                <li class="clearfix award-item">
-                    <span class="award-title">Volunteer of Distinction</span>
-                    <span class="award-entity">Office of the Provost – University of Tennessee, Knoxville <span class="right-align">2026</span></span>
-                </li>
-                <li class="clearfix award-item">
-                    <span class="award-title">Graduate Student Research Award</span>
-                    <span class="award-entity">Graduate School – University of Tennessee, Knoxville <span class="right-align">2025</span></span>
-                </li>
-                <li class="clearfix award-item">
-                    <span class="award-title">Three Minute Thesis (2nd Place)</span>
-                    <span class="award-entity">Graduate Physics Society – University of Tennessee, Knoxville <span class="right-align">2025</span></span>
-                </li>
-                <li class="clearfix award-item">
-                    <span class="award-title">Best Student Poster</span>
-                    <span class="award-entity">Center for Nanophase Materials Sciences (ORNL) User Meeting <span class="right-align">2024</span></span>
-                </li>
-                <li class="clearfix award-item">
-                    <span class="award-title">Lab Safety Culture Award (1st Place)</span>
-                    <span class="award-entity">Environmental Health and Safety Committee, University of Tennessee, Knoxville <span class="right-align">2024</span></span>
-                </li>
-                <li class="clearfix award-item">
-                    <span class="award-title">Biophysical Society Travel Award</span>
-                    <span class="award-entity">Biophysical Society <span class="right-align">2024, 2026</span></span>
-                </li>
-                <li class="clearfix award-item">
-                    <span class="award-title">Graduate Student Senate Travel Award</span>
-                    <span class="award-entity">Graduate Student Senate – University of Tennessee, Knoxville <span class="right-align">2023, 2024</span></span>
-                </li>                
-                <li class="clearfix award-item">
-                    <span class="award-title">Departmental Fellowship</span>
-                    <span class="award-entity">Department of Physics and Astronomy, University of Tennessee, Knoxville <span class="right-align">2020–2023</span></span>
-                </li>
-            </ul>
-        </div>
-        
-        <button class="accordion" id="skills">Skills</button>
-        <div class="panel">
-            <ul>
-                <li><strong>Technical & Laboratory:</strong> Microfabrication (e-beam lithography, photolithography, RIE, PDMS molding); Imaging & Analysis (fluorescence microscopy, high-throughput time-lapse imaging, U-Net CNN segmentation); Molecular Biology (Lambda-Red, P1 transduction, PCR); Materials Characterization (tensile strength testing, DSC, SEM).</li>
-                <li><strong>Software & Data Analysis:</strong> Python, MATLAB, C++, Git, TensorFlow, PyTorch; Molecular dynamics simulation (ESPResSo, LAMMPS); OriginLab, OSLO, Zemax, ImageJ, Salesforce, Microsoft Office, LaTeX, EndNote.</li>
-                <li><strong>Soft Skills:</strong> Scientific communication, cross-functional teamwork, teaching & mentoring, lab safety, peer review, grant/proposal writing.</li>
-            </ul>
-        </div>
-
-
-        <button class="accordion">Professional Affiliations</button>
-        <div class="panel">
-            <ul>
-                <li class="clearfix">Biophysical Society <span class="right-align">2023–Present</span></li>
-                <li class="clearfix">South Eastern Microscopy Society <span class="right-align">2024–Present</span></li>
-            </ul>
-        </div>
-        
-        <button class="accordion">Outreach, Mentorship & Leadership</button>
-            <div class="panel">
-                <ul>
-                    <li class="clearfix">
-                        <h2>Organizer & Facilitator: Biophysics Journal Club, University of Tennessee, Knoxville</h2> <span class="right-align">Mar 2024 – Present</span>
-                        <ul>
-                            <li>Initiated and led the Biophysics Journal Club at University of Tennessee, Knoxville to promote interdisciplinary research discussions among graduate and undergraduate students.</li>
-                            <li>Facilitated sessions by mediating discussions and encouraging critical analysis of current biophysics literature.</li>
-                        </ul>
-                    </li>
-                    <li class="clearfix">
-                        <h2>Graduate Student Recruitment: Department of Physics, University of Tennessee, Knoxville</h2> <span class="right-align">2024 - 2025</span>
-                        <ul>
-                            <li>Presented research posters during departmental recruitment events to support prospective graduate student engagement.</li>
-                        </ul>
-                    </li>
-                    <li class="clearfix">
-                        <h2>Undergraduate Research Mentorship: EUReCA, University of Tennessee, Knoxville</h2> <span class="right-align">2025 - 2026</span>
-                        <ul>
-                            <li>Mentored undergraduate researchers presenting at Exhibition of Undergraduate Research and Creative Achievement (EUReCA), a campus-wide research showcase at the University of Tennessee, Knoxville.</li>
-                            <a href="https://symposium.foragerone.com/eureca-2026/presentations/78697" target="_blank" class="video-link">
-                                Click here to view the 2026 poster
-                            </a>
-                            <br>
-                            <a href="https://symposium.foragerone.com/eureca-2025/presentations/72540" target="_blank" class="video-link">
-                                Click here to view the 2025 poster
-                            </a>
-                        </ul>
-                    </li>
-                    <li class="clearfix">
-                        <h2>Science Outreach Volunteer: GSSE Summer Program, University of Tennessee, Knoxville</h2> <span class="right-align">May 2022 – Present</span>
-                        <ul>
-                            <li>Conducted engaging, hands-on learning sessions for high school students from the Governor’s School for the Sciences and Engineering (GSSE).</li>
-                            <li>Fostered interest in microscopy and experimental design via interactive sessions showcasing live-cell imaging with microfluidic devices using the Nikon Ti-E confocal microscope.</li>
-                        </ul>
-                    </li>
-                    <li class="clearfix">
-                        <h2>Initiator & Treasurer: Sri Lankan Students' Association, University of Tennessee, Knoxville</h2> <span class="right-align">2023 - 2024</span>
-                        <ul>
-                            <li>Authored the organization's constitution, independently designed its official logo, and established the association's structure.</li>
-                            <li>
-                              Initiated and led the first fundraising campaign, generating over $1000 in funds to support the inaugural event that attracted over 100 attendees. 
-                              Watch the video I created on my <a href="https://www.youtube.com/watch?v=AIwuc1N2vns" target="_blank" class="video-link">YouTube channel</a> to catch highlights from the event.
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="clearfix">
-                        <h2>Instructor: Central Province Teacher Training Workshop – Science Education Unit (SEU), University of Peradeniya</h2> <span class="right-align">Mar 2018 – Mar 2019</span>
-                        <ul>
-                            <li>Conducted training sessions for G.C.E. (A/L) Physics teachers on laboratory experiments and practical procedures.</li>
-                            <li>Supported professional development of teachers by strengthening hands-on physics laboratory instruction.</li>
-                        </ul>
-                    </li>
-                    <li class="clearfix">
-                        <h2>Science Outreach: Department of Physics, University of Peradeniya, Sri Lanka</h2> <span class="right-align">Spring 2019</span>
-                        <ul>
-                            <li>Demonstrated experimental science sessions for Advanced Level students (pre-university) at the Science Education Resource Centre.</li>
-                            <li>Focus was on engaging students with practical applications of physics concepts.</li>
-                        </ul>
-                    </li>       
-                    <li class="clearfix">
-                        <h2>Education Volunteer: Physical Society, University of Peradeniya, Sri Lanka</h2> <span class="right-align">2017 – 2018</span>
-                        <ul>
-                            <li>Volunteered with the Physical Society to teach comprehensive lessons in Science, Mathematics, and English to students from rural schools.</li>
-                            <li>Program focused on promoting science education and literacy among underserved communities.</li>
-                        </ul>
-                    </li>
-                    </ul>
-            </div>
-
-            <button class="accordion">Hobbies & Interests</button>
-            <div class="panel psmall-panel">
-                <psmall style="margin-bottom: 15px;">
-                    I'm happiest when I'm moving. You'll usually find me outdoors, hiking trails or, as an islander who grew up in Sri Lanka, anything that puts me near the water: swimming, kayaking, and everything in between.
-                </psmall>
-                <figure class="poster-figure">
-                    <img src="chatinnature.png" alt="Chat in nature">
-                    <figcaption class="poster-figcaption">Exploring the stunning beauty of Tennessee!</figcaption>
-                </figure>
-            </div>
-        
+      </ul>
     </div>
 
-    <div class="contact-section" id="contact-us">
-        <h2>Contact Me</h2>
-        <psmall>Please feel free to connect for inquiries regarding my research, potential career opportunities, and collaborations.</psmall>
-
-        <div class="linkedin-logo">
-            <a href="mailto:camarasi@vols.utk.edu" title="Send Email">
-                <img src="mailto.svg" alt="Email">
-            </a>
-            <a href="https://www.linkedin.com/in/chathuddasie-amarasinghe" target="_blank">
-                <img src="linkedin-logo.svg" alt="LinkedIn">
-            </a>
-            <a href="https://scholar.google.com/citations?user=vD4YGC8AAAAJ&hl=en" target="_blank">
-                <img src="GoogleScholarSquare.svg" alt="Scholar">
-            </a>
-        </div>
+    <div class="timeline-entry reveal">
+      <div class="timeline-period">August 2019 – May 2020</div>
+      <div class="timeline-role">Graduate Teaching Assistant</div>
+      <div class="timeline-org">University of North Carolina at Charlotte</div>
+      <ul class="timeline-bullets">
+        <li><strong>Chemistry 1251L — General Chemistry I Lab:</strong> Topics include quantitative measurements, solution preparation, chemical reactions, thermochemical processes, and properties of materials.
+          <ul style="margin-top:0.4rem; padding-left:1.25rem; list-style:none; display:grid; gap:0.3rem;">
+            <li style="font-size:0.85rem; color:rgba(232,233,238,0.65); padding-left:1rem; position:relative;">Managed weekly lab preparation for 15+ sections; guided and evaluated 40+ undergraduate students on safe experiment execution.</li>
+            <li style="font-size:0.85rem; color:rgba(232,233,238,0.65); padding-left:1rem; position:relative;">Transitioned swiftly to online instruction during COVID-19 lockdowns, developing video lessons to maintain student engagement.</li>
+          </ul>
+        </li>
+      </ul>
     </div>
 
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-
-        for (var i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-
-                var scrollPos = window.scrollY;
-
-                for (var j = 0; j < acc.length; j++) {
-                    if (acc[j] !== this) {
-                        acc[j].classList.remove("active");
-                        acc[j].nextElementSibling.style.display = "none";
-                    }
-                }
-
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-
-                setTimeout(() => {
-                    this.scrollIntoView({ behavior: "smooth", block: "start" });
-                }, 50);
-            });
-        }
- 
-        document.addEventListener("click", (e) => {
-            const link = e.target.closest('a[href^="#"]');
-            if (!link) return;
-
-            const targetId = link.getAttribute("href").substring(1);
-            const btn = document.getElementById(targetId);
-
-            if (!btn || !btn.classList.contains("accordion")) return;
-
-            e.preventDefault();
-
-            if (!btn.classList.contains("active")) btn.click();
-
-            const yOffset = -10;
-            const y = btn.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-            window.scrollTo({ top: y, behavior: "smooth" });
-        });
-
-    </script>
-
-
-    <div class="fixed-footer">
-        © 2025 Chathuddasie Amarasinghe — Use of images without permission is prohibited.
+    <div class="timeline-entry reveal">
+      <div class="timeline-period">January 2019 – July 2019</div>
+      <div class="timeline-role">Teaching Assistant</div>
+      <div class="timeline-org">University of Peradeniya, Sri Lanka</div>
+      <ul class="timeline-bullets">
+        <li><strong>Physics 481 — Advanced Physics Laboratory III:</strong> Demonstrated and supervised 400-level undergraduate laboratory sessions focused on the Mechanical Testing Machine.</li>
+        <li><strong>Physics 361 — Biophysics:</strong> Prepared tutorial materials and marking schemes; evaluated student submissions for this upper-division course.</li>
+        <li><strong>Physics 280 — General Physics Laboratory I:</strong> Demonstrated and supervised 200-level lab sessions for 100+ students; compiled handouts, prepared and graded prelab quizzes, and evaluated lab reports.</li>
+      </ul>
     </div>
 
+  </div>
+</section>
+
+<div class="full-bleed-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Capabilities</div>
+      <h2 class="section-title">Skills</h2>
+    </div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-category">Microfabrication</div>
+      <div class="skill-tags">
+        <span class="skill-tag">E-beam Lithography</span>
+        <span class="skill-tag">Photolithography</span>
+        <span class="skill-tag">RIE</span>
+        <span class="skill-tag">PDMS Molding</span>
+        <span class="skill-tag">FE-SEM</span>
+        <span class="skill-tag">E-beam Evaporation</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-category">Imaging & Analysis</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Fluorescence Microscopy</span>
+        <span class="skill-tag">Time-lapse Imaging</span>
+        <span class="skill-tag">U-Net CNN</span>
+        <span class="skill-tag">ImageJ</span>
+        <span class="skill-tag">OriginLab</span>
+        <span class="skill-tag">Zemax / OSLO</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-category">Molecular Biology</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Lambda-Red</span>
+        <span class="skill-tag">P1 Transduction</span>
+        <span class="skill-tag">PCR</span>
+        <span class="skill-tag">Strain Engineering</span>
+        <span class="skill-tag">MST</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-category">Software & Computing</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">MATLAB</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">LAMMPS</span>
+        <span class="skill-tag">ESPResSo</span>
+        <span class="skill-tag">LaTeX</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-category">Materials Characterization</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SEM Imaging</span>
+        <span class="skill-tag">Tensile Testing</span>
+        <span class="skill-tag">DSC</span>
+        <span class="skill-tag">Nanoparticle Synthesis</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-category">Communication</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Grant Writing</span>
+        <span class="skill-tag">Peer Review</span>
+        <span class="skill-tag">Teaching</span>
+        <span class="skill-tag">Mentoring</span>
+        <span class="skill-tag">Lab Safety</span>
+        <span class="skill-tag">Science Outreach</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-bleed-divider"></div>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Recognition</div>
+      <h2 class="section-title">Fellowships & Awards</h2>
+    </div>
+  </div>
+  <div class="awards-grid">
+    <div class="award-card reveal">
+      <div class="award-year-tag">2026</div>
+      <div class="award-name">Excellence in Graduate Research</div>
+      <div class="award-body">Graduate Student Senate — University of Tennessee, Knoxville</div>
+    </div>
+    <div class="award-card reveal">
+      <div class="award-year-tag">2026</div>
+      <div class="award-name">Volunteer of Distinction</div>
+      <div class="award-body">Office of the Provost — University of Tennessee, Knoxville</div>
+    </div>
+    <div class="award-card reveal">
+      <div class="award-year-tag">2025</div>
+      <div class="award-name">Graduate Student Research Award</div>
+      <div class="award-body">Graduate School — University of Tennessee, Knoxville</div>
+    </div>
+    <div class="award-card reveal">
+      <div class="award-year-tag">2025</div>
+      <div class="award-name">Three Minute Thesis — 2nd Place</div>
+      <div class="award-body">Graduate Physics Society — University of Tennessee, Knoxville</div>
+    </div>
+    <div class="award-card reveal">
+      <div class="award-year-tag">2024</div>
+      <div class="award-name">Best Student Poster</div>
+      <div class="award-body">Center for Nanophase Materials Sciences — ORNL User Meeting</div>
+    </div>
+    <div class="award-card reveal">
+      <div class="award-year-tag">2024</div>
+      <div class="award-name">Lab Safety Culture Award — 1st Place</div>
+      <div class="award-body">Environmental Health and Safety Committee — UT Knoxville</div>
+    </div>
+    <div class="award-card reveal">
+      <div class="award-year-tag">2024 · 2026</div>
+      <div class="award-name">Biophysical Society Travel Award</div>
+      <div class="award-body">Biophysical Society</div>
+    </div>
+    <div class="award-card reveal">
+      <div class="award-year-tag">2023 · 2024</div>
+      <div class="award-name">Graduate Student Senate Travel Award</div>
+      <div class="award-body">Graduate Student Senate — University of Tennessee, Knoxville</div>
+    </div>
+    <div class="award-card reveal">
+      <div class="award-year-tag">2020 – 2023</div>
+      <div class="award-name">Departmental Fellowship</div>
+      <div class="award-body">Department of Physics and Astronomy — University of Tennessee, Knoxville</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Latest</div>
+      <h2 class="section-title">News & Updates</h2>
+    </div>
+    <div class="section-count">2020 – 2026</div>
+  </div>
+
+  <div class="news-year-marker reveal">April 2026</div>
+  <div class="news-entry featured reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Received the <strong>2026 Excellence in Graduate Research Award</strong> by the Graduate Student Senate at the University of Tennessee.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Mentored two undergraduate researchers to present at <strong>EUReCA 2026</strong>. <a href="https://symposium.foragerone.com/eureca-2026/presentations/78697" target="_blank">View poster →</a></div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Launched the <strong>Researcher Personality Quiz</strong> — a side project exploring work styles in research. <a href="https://researcherpersonalitystylequiz.netlify.app/" target="_blank">Take the quiz →</a></div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented a research poster at the <strong>Biomembranes Symposium 2026</strong> at University of Tennessee, Knoxville.</div>
+  </div>
+
+  <div class="news-year-marker reveal">March 2026</div>
+  <div class="news-entry featured reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Named a <strong>2026 Volunteer of Distinction</strong> by the Office of the Provost at the University of Tennessee.</div>
+  </div>
+
+  <div class="news-year-marker reveal">February 2026</div>
+  <div class="news-entry featured reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Successfully defended my <strong>Ph.D. in Physics (Biophysics)</strong>.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented a research poster at the <strong>2026 Biophysical Society Annual Meeting</strong>.</div>
+  </div>
+
+  <div class="news-year-marker reveal">December 2025</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Research featured in <strong>UT Physics News</strong>: <a href="https://physics.utk.edu/uts-biophysics-group-investigates-how-chromosomes-separate/" target="_blank">Read the article →</a></div>
+  </div>
+
+  <div class="news-year-marker reveal">November 2025</div>
+  <div class="news-entry featured reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Published in <strong>PNAS</strong>: <a href="https://www.pnas.org/doi/abs/10.1073/pnas.2508100122" target="_blank">The role of active mRNA–ribosome dynamics and closing constriction in daughter chromosome separation in E. coli →</a></div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Received the <strong>2026 Biophysical Society Travel Award</strong>.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Renewed <strong>CITI Conflict of Interest</strong> and <strong>Responsible Conduct of Research (RCR)</strong> certifications.</div>
+  </div>
+
+  <div class="news-year-marker reveal">October 2025</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Earned the <strong>My Green Lab® Ambassador</strong> certification by completing sustainability training on best laboratory practices.</div>
+  </div>
+
+  <div class="news-year-marker reveal">August 2025</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented at the <strong>CNMS User Meeting 2025</strong>.</div>
+  </div>
+
+  <div class="news-year-marker reveal">July 2025</div>
+  <div class="news-entry featured reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Published in <strong>EcoSal Plus</strong>: <a href="https://journals.asm.org/doi/full/10.1128/ecosalplus.esp-0002-2024" target="_blank">The role of macromolecular crowders in the formation and compaction of the E. coli nucleoid →</a></div>
+  </div>
+
+  <div class="news-year-marker reveal">April 2025</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Received the <strong>Graduate Student Research Award (GSRA)</strong> — competitive peer-reviewed grant; funds used to purchase advanced optical filters and laboratory materials.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Won <strong>Second Place</strong> in the <strong>Three Minute Thesis (3MT)</strong> competition, organized by Graduate Physics Society, University of Tennessee.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Mentored undergraduate researcher to present at <strong>EUReCA 2025</strong>. <a href="https://symposium.foragerone.com/eureca-2025/presentations/72540" target="_blank">View poster →</a></div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented a research poster at the <strong>Biomembranes Symposium 2025</strong> at University of Tennessee, Knoxville.</div>
+  </div>
+
+  <div class="news-year-marker reveal">March 2025</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented at the <strong>2025 Women In Microscopy Conference</strong>. <a href="https://youtu.be/6FR0FmpzS88?si=TL6EEwzGCyFmpJ6F&t=6237" target="_blank">Watch video →</a></div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented at the <strong>2025 Young Biophysicists Meeting</strong>.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented a research poster at the <strong>Prospective Graduate Student Poster Session</strong>, Department of Physics, UT Knoxville, introducing prospective students to ongoing research in biophysics.</div>
+  </div>
+
+  <div class="news-year-marker reveal">February 2025</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented a research poster at the <strong>2025 Biophysical Society Annual Meeting</strong>.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented a research poster at the <strong>Student Night Poster Session</strong>, organized by the UT Center for Advanced Materials & Manufacturing (CAMM), ORC ASM International, and the Eastern Tennessee Section of the American Ceramic Society (ACerS).</div>
+  </div>
+
+  <div class="news-year-marker reveal">December 2024</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Received the <strong>Graduate Student Senate (GSS) Travel Award</strong>, UT Knoxville.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Research featured in <strong>UT Physics News</strong>: <a href="https://physics.utk.edu/uts-biophysics-research-lays-the-groundwork-for-designing-new-antibiotics/" target="_blank">Read the article →</a></div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Delivered a talk at the <strong>Lab Safety Culture Awards Dinner</strong> at UT Knoxville on housekeeping and safety practices in the Männik Lab.</div>
+  </div>
+
+  <div class="news-year-marker reveal">November 2024</div>
+  <div class="news-entry featured reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Published in <strong>Nature Communications</strong>: <a href="https://www.nature.com/articles/s41467-024-54242-w" target="_blank">Determining the rate-limiting processes for cell division in E. coli →</a></div>
+  </div>
+
+  <div class="news-year-marker reveal">August 2024</div>
+  <div class="news-entry featured reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Won the <strong>Best Student Poster Award</strong> at CNMS User Meeting (ORNL).</div>
+  </div>
+
+  <div class="news-year-marker reveal">June 2024</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Awarded <strong>First Place, Lab Safety Culture Award</strong>, UT Knoxville.</div>
+  </div>
+
+  <div class="news-year-marker reveal">May 2024</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented at the <strong>2024 Southeastern Microscopy Society (SEMS)</strong> meeting.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Demonstrated live-cell imaging and hands-on physics experiments for high school students in the <strong>Governor's School for the Sciences and Engineering (GSSE)</strong> Summer Program at UT Knoxville.</div>
+  </div>
+  
+  <div class="news-year-marker reveal">March 2024</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Initiated the <strong>Biophysics Journal Club</strong> with members of Männik Lab.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented a research poster at the <strong>Prospective Graduate Student Poster Session</strong>, Department of Physics, UT Knoxville, introducing prospective students to ongoing research in biophysics.</div>
+  </div>
+
+  <div class="news-year-marker reveal">February 2024</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text"><strong>Co-chaired and presented</strong> at the <strong>Biophysical Society Annual Meeting 2024</strong>.</div>
+  </div>
+
+  <div class="news-year-marker reveal">December 2023</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Received the <strong>Graduate Student Senate (GSS) Travel Award</strong>, UT Knoxville.</div>
+  </div>
+  
+  <div class="news-year-marker reveal">November 2023</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Received the <strong>Biophysical Society Travel Award</strong> (2024 cycle).</div>
+  </div>
+  
+  <div class="news-year-marker reveal">August 2023</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented a research poster at the <strong>CNMS User Meeting 2023</strong>.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Presented a research poster at the <strong>Bredesen Center (GST) New Student Orientation & Poster Session 2023</strong>, introducing incoming graduate students to rotation and research opportunities.</div>
+  </div>
+  
+  <div class="news-year-marker reveal">June 2023</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Earned the <strong>Introduction to Databases</strong> certification via Coursera.</div>
+  </div>
+  
+  <div class="news-year-marker reveal">May 2023</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Earned the <strong>Data Engineering Foundations</strong> certification via LinkedIn Learning, strengthening core skills in data pipelines, databases, and analytics workflows.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Demonstrated live-cell imaging and hands-on physics experiments for high school students in the <strong>Governor's School for the Sciences and Engineering (GSSE)</strong> Summer Program at UT Knoxville.</div>
+  </div>
+
+  <div class="news-year-marker reveal">November 2022</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Successfully passed the <strong>PhD Comprehensive Exam</strong> with the defense of my doctoral research proposal.</div>
+  </div>
+
+  <div class="news-year-marker reveal">August 2022</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Began hands-on microfabrication work at the <strong>ORNL CNMS Cleanroom</strong>.</div>
+  </div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Achieved independent user access for advanced microfabrication tools at the ORNL CNMS cleanroom: <strong>JEOL 8100 FS E-Beam Lithography</strong>, <strong>Suss MicroTech Contact Aligner</strong>, <strong>Thermionics VE-240 E-Beam Evaporator</strong>, <strong>Oxford PlasmaLab System 100 RIE</strong>, and <strong>Zeiss Merlin FE-SEM</strong>.</div>
+  </div>
+
+  <div class="news-year-marker reveal">August 2021</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Successfully passed the <strong>Physics PhD Qualifying Exam</strong> at the University of Tennessee, Knoxville.</div>
+  </div>
+
+  <div class="news-year-marker reveal">May 2021</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Joined the <strong>Männik Lab</strong> as a Graduate Research Assistant, gaining initial hands-on experience in fabricating microfluidic devices and independently operating the <strong>Nikon Ti-E</strong> inverted epifluorescence microscope for live-cell imaging.</div>
+  </div>
+
+  <div class="news-year-marker reveal">August 2020</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Joined the <strong>PhD program in Physics</strong> at the University of Tennessee, Knoxville. Go Vols! 🍊</div>
+  </div>
+
+  <div class="news-year-marker reveal">June 2020</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Joined the <strong>Männik Lab</strong> as a Research Assistant to study chromosome segregation using large-scale molecular dynamics modeling on HPC with <strong>ESPResSo</strong>.</div>
+  </div>
+  
+  <div class="news-year-marker reveal">May 2020</div>
+  <div class="news-entry reveal">
+    <div class="news-dot"></div>
+    <div class="news-text">Earned the <strong>ACS Reviewer Lab Certification</strong> (American Chemical Society).</div>
+  </div>
+</section>
+
+<div class="full-bleed-divider"></div>
+
+
+<!-- CONTACT -->
+<div id="contact" class="contact-section">
+  <div class="section-label" style="margin-bottom:1rem">Connect</div>
+  <h2 class="contact-heading">Let's work together</h2>
+  <p class="contact-sub">Please feel free to connect for inquiries regarding my research, potential career opportunities, and collaborations.</p>
+  <div class="contact-links">
+    <a href="mailto:camarasi@vols.utk.edu" class="contact-link">✉ Email</a>
+    <a href="https://www.linkedin.com/in/chathuddasie-amarasinghe" target="_blank" class="contact-link">LinkedIn ↗</a>
+    <a href="https://scholar.google.com/citations?user=vD4YGC8AAAAJ&hl=en" target="_blank" class="contact-link">Google Scholar ↗</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Chathuddasie Amarasinghe</span>
+  <span>Use of images without permission is prohibited.</span>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+
+// Stagger grid children
+document.querySelectorAll('.skills-grid, .awards-grid, .pubs-list').forEach(grid => {
+  Array.from(grid.children).forEach((child, i) => {
+    child.style.transitionDelay = `${i * 0.06}s`;
+  });
+});
+</script>
 </body>
-
 </html>

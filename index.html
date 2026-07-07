@@ -143,6 +143,20 @@ nav {
 }
 .hero-name em { font-style: italic; color: var(--accent); }
 
+.name-pronunciation {
+  margin-top: 0.35rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+.name-pronunciation em {
+  font-style: normal;
+  color: var(--text);
+}
+
+
 .hero-title {
   font-size: clamp(0.9rem, 1.5vw, 1.15rem);
   font-weight: 300;
@@ -235,6 +249,7 @@ nav {
 .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
 .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
 .hero-left > *:nth-child(5) { animation-delay: 0.5s; }
+.hero-left > *:nth-child(6) { animation-delay: 0.6s; }
 
 /* ═══════════════════════════════════════
    SECTIONS
@@ -574,6 +589,7 @@ footer {
 <div id="top" class="hero">
   <div class="hero-left">
     <h1 class="hero-name">Chathuddasie<br><em>(Chat)</em><br>Amarasinghe</h1>
+    <p class="name-pronunciation">Pronounced: <em>chuh-TOOD-duh-see ah-muh-ruh-SING-huh</em></p>
     <p class="hero-title">PhD, CIMA Adv Dip MA</p>
     <p class="hero-bio">7+ years of experience in life sciences research, advanced imaging, and specialized instrumentation. Investigating chromosome organization and intracellular dynamics in <em>E. coli</em> using fluorescence microscopy, genetic engineering, and computational modeling.</p>
     <div class="hero-cta">
